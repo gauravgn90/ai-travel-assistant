@@ -1,0 +1,23 @@
+{
+  "_comment": [
+    "Optional. Copy to mcp.config.json to replace the bundled servers.",
+    "Same `mcpServers` shape that Claude Desktop and other MCP hosts use, so any",
+    "third-party server can be dropped in without touching application code.",
+    "Whatever tools the listed servers advertise are offered to the model.",
+    "Delete this file (or mcp.config.json) to fall back to the bundled pair."
+  ],
+  "mcpServers": {
+    "travel-weather": {
+      "command": "node",
+      "args": ["mcp-servers/src/weather.ts"]
+    },
+    "travel-currency": {
+      "command": "node",
+      "args": ["mcp-servers/src/currency.ts"]
+    },
+    "filesystem-example": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./knowledge-base"]
+    }
+  }
+}
