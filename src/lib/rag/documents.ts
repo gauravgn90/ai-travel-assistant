@@ -93,10 +93,20 @@ export async function loadDocuments(root: string = paths.knowledgeBase): Promise
   return documents.sort((a, b) => a.metadata.id.localeCompare(b.metadata.id));
 }
 
+/**
+ * Markdown files under knowledge-base/ that document the corpus rather than
+ * belong to it. Everything else must carry front matter, and a file that does
+ * not is a mistake worth failing on.
+ */
+const NON_SOURCE_FILES = new Set(["README.md", "CONTRIBUTING.md"]);
+
 async function collectMarkdownFiles(root: string): Promise<string[]> {
   const entries = await readdir(root, { withFileTypes: true, recursive: true });
   return entries
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+    .filter(
+      (entry) =>
+        entry.isFile() && entry.name.endsWith(".md") && !NON_SOURCE_FILES.has(entry.name),
+    )
     .map((entry) => path.join(entry.parentPath, entry.name))
     .sort();
 }

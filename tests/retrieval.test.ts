@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { LexicalIndex, tokenize } from "../src/lib/rag/lexical.ts";
 import { VectorStore } from "../src/lib/rag/vector-store.ts";
-import { parseFrontmatter } from "../src/lib/rag/documents.ts";
+import { loadDocuments, parseFrontmatter } from "../src/lib/rag/documents.ts";
 import type { IndexedChunk, KnowledgeChunk } from "../src/lib/types.ts";
 
 function chunk(id: string, text: string, headings: string[] = []): KnowledgeChunk {
@@ -113,5 +113,23 @@ describe("parseFrontmatter", () => {
   it("names the missing field when one is absent", () => {
     const withoutUrl = valid.replace("url: https://example.com/a\n", "");
     assert.throws(() => parseFrontmatter(withoutUrl, "test.md"), /missing "url"/);
+  });
+});
+
+describe("loadDocuments", () => {
+  it("loads the committed corpus and skips its README", async () => {
+    const documents = await loadDocuments();
+
+    assert.ok(documents.length >= 12, `expected the full corpus, got ${documents.length}`);
+    assert.ok(
+      documents.every((document) => !document.file.endsWith("README.md")),
+      "knowledge-base/README.md documents the corpus and is not part of it",
+    );
+
+    for (const document of documents) {
+      assert.ok(document.metadata.url.startsWith("http"), `${document.file} has no source URL`);
+      assert.ok(document.metadata.license.length > 0, `${document.file} has no licence`);
+      assert.ok(document.body.trim().length > 500, `${document.file} is suspiciously short`);
+    }
   });
 });
