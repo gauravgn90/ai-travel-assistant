@@ -112,10 +112,10 @@ which is most of the image: the embedding model runs on CPU.
 
 | Provider | Default model | Key |
 | --- | --- | --- |
-| `google` | `gemini-2.5-flash` | `GOOGLE_API_KEY` |
+| `google` | `gemini-3.5-flash` | `GOOGLE_API_KEY` |
 | `openai` | `gpt-4o-mini` | `OPENAI_API_KEY` |
 | `anthropic` | `claude-sonnet-5` | `ANTHROPIC_API_KEY` |
-| `groq` | `llama-3.3-70b-versatile` | `GROQ_API_KEY` |
+| `groq` | `openai/gpt-oss-120b` | `GROQ_API_KEY` |
 
 The provider SDKs are imported lazily in `src/lib/model.ts`, so a deployment only loads the one it
 uses. Everything downstream drives a LangChain `BaseChatModel`, so switching provider is a

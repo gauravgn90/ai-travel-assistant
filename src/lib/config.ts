@@ -28,7 +28,7 @@ export const DEFAULT_MODEL: Record<Provider, string> = {
   google: "gemini-3.5-flash",
   openai: "gpt-4o-mini",
   anthropic: "claude-sonnet-5",
-  groq: "llama-3.3-70b-versatile",
+  groq: "openai/gpt-oss-120b",
 };
 
 export const API_KEY_VAR: Record<Provider, string> = {
