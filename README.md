@@ -12,6 +12,7 @@ The chat model is pluggable: Google Gemini, OpenAI, Anthropic or Groq.
 Requires Node 24 or newer (it runs the TypeScript tool servers and the ingest script directly).
 
 ```bash
+git clone https://github.com/gauravgn90/ai-travel-assistant.git
 npm install
 cp .env.example .env.local     # pick a provider and set its key
 npm run fetch                  # refresh the knowledge base from the wikis (optional)
