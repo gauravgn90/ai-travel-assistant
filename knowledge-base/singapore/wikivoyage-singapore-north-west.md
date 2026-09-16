@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-north-west
-title: "Wikivoyage: Singapore — North and West"
+title: "Wikivoyage: Singapore - North and West"
 url: https://en.wikivoyage.org/wiki/Singapore/North_and_West
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, nature, zoo, family, outdoors]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — North and West
+
+# Wikivoyage: Singapore - North and West
 
 The northern and western parts of Singapore are the city's hinterlands, consisting of jungle dotted with public housing blocks and a significant industrial area in Sungei Kadut and the reclaimed area of Tuas. In addition there is a reclaimed island, Jurong Island, made from the merging of 7 previously smaller islands, but this is devoted to the petrochemical industry and off limits unless you have a permit.
 
@@ -71,7 +70,7 @@ Most of the former Malaysian line has been converted to the Rail Corridor, a wal
 
 For such a densely populated island Singapore has a lot of nature to discover. It's a steamy tropical jungle out there though, so best times are very early in the morning or in the late afternoon.
 
-1 Bukit Timah Nature Reserve, Hindhede Drive (Bus 170 or SMRT 67, 75, 171, 173, 184, 852 and 961 to the Courts department store on Upper Bukit Timah Rd and walk). 7AM–7PM daily. At 166 metres this is Singapore's highest point — if you don't count the city's skyscrapers. It is also one of the last places in Singapore that is home to the original primary tropical rainforest that used to cover the entire island. You can scale the hill in 15 minutes if you follow the paved road (boring) or 45-50 minutes if you do it the long way around (more interesting). Watch out for monkeys! Don´t expect a stunning view from the top, though. Almost nothing can be seen through the thick trees. Free.
+1 Bukit Timah Nature Reserve, Hindhede Drive (Bus 170 or SMRT 67, 75, 171, 173, 184, 852 and 961 to the Courts department store on Upper Bukit Timah Rd and walk). 7AM–7PM daily. At 166 metres this is Singapore's highest point - if you don't count the city's skyscrapers. It is also one of the last places in Singapore that is home to the original primary tropical rainforest that used to cover the entire island. You can scale the hill in 15 minutes if you follow the paved road (boring) or 45-50 minutes if you do it the long way around (more interesting). Watch out for monkeys! Don´t expect a stunning view from the top, though. Almost nothing can be seen through the thick trees. Free.
 
 2 MacRitchie Reservoir, Lornie Rd (Bus 162, 166 from Scotts Rd, Bus 74, 132, 165 from Ang Mo Kio MRT Station or Bus 166 from Ang Mo Kio Bus Interchange), ☏ +65 6468 5736. Park open sunrise to sunset, Treetop Walk open 09:00-17:00 Tue-Sun. Rather more exciting than it sounds, this serene artificial lake is surrounded by acres of virgin jungle (and not a few golf courses). On the north side, the HSBC Treetop Walk is a 250-m bridge suspended as high as 27 m above the ground. Trails range from 3 to 11 km, and are of different difficulty levels. You can even hike all the way to Bukit Timah. There is a basic food court at the south entrance, and a ranger station with toilets and water at the 4.5 km mark (near Treetop Walk) on the north side. The park is also a popular haunt of canoeing enthusiasts, joggers, and strollers. For history buffs, this was also the site of a Shinto shrine (called the Syonan Jinja) built by the Japanese during World War II, and the ruins of the shrine, while largely inaccessible without navigational equipment, still survive. For wildlife enthusiasts, the area is also home to two species of monkeys; the crab-eating macaque, which is very numerous and you are almost guaranteed to run into, and the Raffles' banded langur, which is very shy and critically endangered in Singapore, meaning that you will be very lucky to spot some in the forest canopies. Free.
 3 Sungei Buloh Wetland Reserve (Kranji Express bus (hourly) or bus 925 (every 12 minutes) from Kranji MRT). Daily 7:30AM-7PM. If you want to see a mangrove forest, this is your chance. The nature reserve is a site of international importance for migratory birds, while on the ground level, expect to see lots of bug-eyed giant mudskippers flapping about in the muck during a low tide. As the reserve is basically a swamp, bring plenty of mosquito repellent and keep an eye out for crocodiles: the aptly named "Tailless" can often be spotted hanging around under the bridge just west of the Wetland Center, and the 1.3 km Coastal Trail across to the Visitor Center is a nice stroll. Free. (updated Feb 2024)
@@ -96,7 +95,7 @@ Tourist attractions such as Singapore Zoological Gardens and Singapore Botanic G
 
 ### Budget
 
-Hawker food is cheap in the boondocks, and there are culinary gems to be found — if you can find them, that is. Ask local residents for their recommendations. There are also clusters of good western cafes and restaurants in Holland Village and Dempsey Hill.
+Hawker food is cheap in the boondocks, and there are culinary gems to be found - if you can find them, that is. Ask local residents for their recommendations. There are also clusters of good western cafes and restaurants in Holland Village and Dempsey Hill.
 
 1 Bao Gong XO Fish Head Bee Hoon, Blk 721 Clementi West St 2 #01-100, ☏ +65 6778 9301. This place lets you find out what happens when you add XO cognac to fish soup. Less adventurous souls may want to try sliced fish instead of fish head.
 2 Joo Siah Bak Kut Teh, Blk 349 Jurong East Ave 1 #01-1215 (MRT Chinese Garden). Tue-Sat 8AM-8PM, Sun 8AM–3PM. One of Singapore's best-known joints for bak kut teh (lit. "pork bone tea"), a peppery pork rib broth. Two bowls, rice and a serve of mui choy veggies will set you back $9.10; add in $0.50 for some you tiao fritters from the shop next door to dip in your soup.

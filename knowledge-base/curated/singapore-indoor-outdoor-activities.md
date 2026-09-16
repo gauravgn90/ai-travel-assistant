@@ -1,6 +1,6 @@
 ---
 id: singapore-indoor-outdoor-activities
-title: "Visit Singapore: Things to Do — Indoor and Outdoor"
+title: "Visit Singapore: Things to Do - Indoor and Outdoor"
 url: https://www.visitsingapore.com/see-do-singapore/
 publisher: Singapore Tourism Board
 license: "Summarised in our own words from the cited page; facts only, no text reproduced"
@@ -18,26 +18,26 @@ Reliable choices for heavy rain, the midday heat, or travellers who need to stay
 
 ### Museums and galleries
 
-- National Gallery Singapore — Southeast Asian art in the former Supreme Court and City Hall.
+- National Gallery Singapore - Southeast Asian art in the former Supreme Court and City Hall.
   MRT: City Hall.
-- Asian Civilisations Museum — regional trade, faith and material culture. MRT: Raffles Place.
-- National Museum of Singapore — the country's history, with a strong permanent gallery.
+- Asian Civilisations Museum - regional trade, faith and material culture. MRT: Raffles Place.
+- National Museum of Singapore - the country's history, with a strong permanent gallery.
   MRT: Bras Basah.
-- Peranakan Museum — Straits Chinese culture, textiles and furniture. MRT: Bras Basah.
-- ArtScience Museum — the lotus-shaped building at Marina Bay Sands; hosts Future World, a
+- Peranakan Museum - Straits Chinese culture, textiles and furniture. MRT: Bras Basah.
+- ArtScience Museum - the lotus-shaped building at Marina Bay Sands; hosts Future World, a
   permanent digital-art installation that works particularly well with children. MRT: Bayfront.
 - Indian Heritage Centre, Little India. MRT: Little India.
 - Malay Heritage Centre, Kampong Glam. MRT: Bugis.
-- Chinatown Heritage Centre — restored shophouse interiors. MRT: Chinatown.
+- Chinatown Heritage Centre - restored shophouse interiors. MRT: Chinatown.
 - Singapore Art Museum and the NUS Museum for contemporary work.
 
 ### Conservatories, aquaria and attractions under cover
 
-- Cloud Forest and Flower Dome at Gardens by the Bay — two cooled glass conservatories with an
+- Cloud Forest and Flower Dome at Gardens by the Bay - two cooled glass conservatories with an
   indoor waterfall; the single best wet-weather substitute for an outdoor garden day. MRT: Bayfront.
-- S.E.A. Aquarium, Sentosa — one of the largest aquaria in the world. MRT: HarbourFront, then the
+- S.E.A. Aquarium, Sentosa - one of the largest aquaria in the world. MRT: HarbourFront, then the
   Sentosa Express.
-- Universal Studios Singapore — a theme park with a high share of indoor rides and covered queues,
+- Universal Studios Singapore - a theme park with a high share of indoor rides and covered queues,
   so it still functions in rain. MRT: HarbourFront.
 - Science Centre Singapore and KidsSTOP, Jurong East. MRT: Jurong East.
 - Singapore Discovery Centre, Jurong.
@@ -46,9 +46,9 @@ Reliable choices for heavy rain, the midday heat, or travellers who need to stay
 
 ### Malls, markets and food under cover
 
-- Orchard Road — ION Orchard, Ngee Ann City, Paragon and Mandarin Gallery, linked by underground
+- Orchard Road - ION Orchard, Ngee Ann City, Paragon and Mandarin Gallery, linked by underground
   passages so the whole street can be walked in rain. MRT: Orchard or Somerset.
-- Jewel Changi Airport — the HSBC Rain Vortex indoor waterfall, the Shiseido Forest Valley, and the
+- Jewel Changi Airport - the HSBC Rain Vortex indoor waterfall, the Shiseido Forest Valley, and the
   Canopy Park attractions. Landside, so it can be visited without a flight. MRT: Changi Airport.
 - Marina Bay Sands' The Shoppes, including the indoor sampan ride. MRT: Bayfront.
 - Bugis Junction and Bugis+ for mid-range shopping. MRT: Bugis.
@@ -60,23 +60,23 @@ Reliable choices for heavy rain, the midday heat, or travellers who need to stay
 - A Singapore Sling at the Long Bar, Raffles Hotel. MRT: City Hall.
 - Tea appreciation at a Chinatown teahouse.
 - A cooking class in Katong or Kampong Glam covering laksa, chicken rice or Peranakan dishes.
-- A performance at the Esplanade — Theatres on the Bay. MRT: Esplanade.
+- A performance at the Esplanade - Theatres on the Bay. MRT: Esplanade.
 
 ## Outdoor, weather-dependent
 
 Best in the morning, and worth moving rather than cancelling when rain is forecast.
 
 - Supertree Grove and the OCBC Skyway, Gardens by the Bay. The Skyway closes in thunderstorms.
-- Singapore Botanic Gardens — a UNESCO World Heritage Site, and free. MRT: Botanic Gardens.
-- Sentosa beaches — Palawan, Siloso and Tanjong.
-- East Coast Park — cycling, the beach and seafood. No MRT; reach it by bus or taxi.
-- The Southern Ridges — a 9 km ridge walk including the Henderson Waves bridge.
+- Singapore Botanic Gardens - a UNESCO World Heritage Site, and free. MRT: Botanic Gardens.
+- Sentosa beaches - Palawan, Siloso and Tanjong.
+- East Coast Park - cycling, the beach and seafood. No MRT; reach it by bus or taxi.
+- The Southern Ridges - a 9 km ridge walk including the Henderson Waves bridge.
 - MacRitchie Reservoir and the TreeTop Walk suspension bridge.
-- Bukit Timah Nature Reserve — rainforest and primary jungle.
-- Pulau Ubin — reached by bumboat from Changi Point; cycling and rural landscapes. Boats can stop
+- Bukit Timah Nature Reserve - rainforest and primary jungle.
+- Pulau Ubin - reached by bumboat from Changi Point; cycling and rural landscapes. Boats can stop
   running in bad weather.
 - Singapore River bumboat rides and the Marina Bay promenade.
-- Mandai Wildlife Reserve — the Singapore Zoo, River Wonders, Bird Paradise and the Night Safari
+- Mandai Wildlife Reserve - the Singapore Zoo, River Wonders, Bird Paradise and the Night Safari
   are largely open-air, though many exhibits and walkways are sheltered.
 
 ## Rainy-day substitutions

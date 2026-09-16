@@ -3,10 +3,9 @@ id: wikipedia-transport-in-singapore
 title: "Wikipedia: Transport in Singapore"
 url: https://en.wikipedia.org/wiki/Transport_in_Singapore
 publisher: Wikipedia
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [transport, mrt, buses, taxis, practical]
+retrievedAt: 2026-09-16
 ---
+
 # Wikipedia: Transport in Singapore
 
 Transport in Singapore is predominantly land-based, with a comprehensive network of roads making many parts of the city-state, including islands such as Sentosa and Jurong Island, accessible. The road network is complemented by a robust rail system consisting of the Mass Rapid Transit (MRT) and the Light Rail Transit (LRT), which cover the length and width of Singapore and serve a few neighbourhoods respectively. The main island of Singapore is also connected to other islands via ferryboat services. Furthermore, the city-state maintains strong international connections through two bridges linking it to Malaysia – the Causeway and the Second Link – and the Singapore Changi Airport, a major aviation hub in Asia.

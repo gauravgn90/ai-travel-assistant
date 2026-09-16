@@ -2,21 +2,18 @@ import type { NextConfig } from "next";
 
 const config: NextConfig = {
   reactStrictMode: true,
-  // The MCP SDK, the LangChain provider packages and the optional local
-  // embedding runtime all reach for Node built-ins and native bindings. Keeping
-  // them external stops Turbopack from trying to bundle them into the server
-  // build, which is both faster and avoids a pile of "module not found: fs"
-  // style failures.
+  // Do not scatter generated AGENTS.md / CLAUDE.md files through the repo.
+  agentRules: false,
+  // Native modules and the MCP SDK must stay outside the bundle so they can be
+  // required at runtime and so the tool servers can be spawned as child processes.
   serverExternalPackages: [
-    "@modelcontextprotocol/sdk",
     "@huggingface/transformers",
-    "@langchain/anthropic",
-    "@langchain/google-genai",
-    "@langchain/groq",
-    "@langchain/openai",
+    "@modelcontextprotocol/sdk",
+    "faiss-node",
   ],
   outputFileTracingIncludes: {
-    "/api/chat": ["./data/index/**", "./knowledge-base/**", "./mcp-servers/**"],
+    "/": ["./README.md"],
+    "/api/chat": ["./data/**", "./mcp-servers/**"],
   },
 };
 

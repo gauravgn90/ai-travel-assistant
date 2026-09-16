@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-orchard
-title: "Wikivoyage: Singapore — Orchard Road"
+title: "Wikivoyage: Singapore - Orchard Road"
 url: https://en.wikivoyage.org/wiki/Singapore/Orchard
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, shopping, indoor, hotels]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — Orchard Road
+
+# Wikivoyage: Singapore - Orchard Road
 
 Orchard Road is Singaporean consumerism at its most manic, a two-kilometre stretch of interconnected shopping malls, hotels, and hotels with shopping malls catering to all budgets and tastes.  North of the Singapore River, to the west of Marina Bay, Orchard Road turns into Tanglin Road to the west and Bras Basah Road as it heads east.  Only at the eastern Bras Basah end do the shopping malls briefly peter out, with some fine colonial architecture and a few of Singapore's top museums to be found instead.
 
@@ -90,7 +89,7 @@ Almost every shopping mall has its own food court, but for gourmet snacking, it'
 1 Asian Food Mall, 304 Orchard Rd, Basement (Lucky Plaza). 7AM-9PM. One of the cheapest food courts in the district. Dim and dingy, but prices are about 30% cheaper than the food courts at nearby malls while still maintaining excellent Singapore standards. Stalls serve local and Asian fare, with Filipino fast food chains like Jollibee and Tapa King well represented. The chicken rice stall usually sells out well before closing and the ayam penyet (Indonesian fried chicken) is no slouch either. $3-5. (updated Oct 2022)
 2 Ayam Penyet Ria, 304 Orchard Rd #04-25/26 (Lucky Plaza), ☏ +65 6235 7385. 11AM-9PM. Very popular Indonesian eatery specializing in ayam penyet or "smashed chicken", breaded, deep-fried and flattened, served with the fiery chili sambal of the name. For a less spicy treat, sample their excellent rawon (beef soup). $7.
 3 Food Republic, 435 Orchard Rd, Level 4 (Wisma Atria). 10AM-9PM daily. Food court done up as a series of hawker carts and decorated with various nostalgic knick-knacks. The food is a notch above average (try e.g. the hokkien mee fried noodles, with a perennial queue snaking out in front), and so are the crowds. Slightly more expensive than the competition. Other Orchard outlets at ION and 313@Somerset. $6-10. (updated Oct 2017)
-4 Gyoza no Osho, 5 Koek Rd (Cuppage Plaza). On the ground floor of a musty mall filled with dodgy Japanese karaoke joints, this greasy spoon joint specializing in ramen noodles and gyoza dumpling will make you sweat — partly because the soups are hot, partly because they don't have air-con. $10.
+4 Gyoza no Osho, 5 Koek Rd (Cuppage Plaza). On the ground floor of a musty mall filled with dodgy Japanese karaoke joints, this greasy spoon joint specializing in ramen noodles and gyoza dumpling will make you sweat - partly because the soups are hot, partly because they don't have air-con. $10.
 5 Killiney Kopitiam, 67 Killiney Rd (Somerset MRT). Mon Wed-Sat 6AM-11PM, Tue Sun 6AM-6PM. A Singaporean legend now franchised across the island, this ordinary-looking coffee shop continues to pack in the crowds for its famous kaya (coconut-egg jam) toast, with the kaya itself also sold as a handy souvenir. For lunch or dinner, try the more substantial chicken curry with grilled French bread ($4.50). $1-5. (updated Oct 2022)
 6 Isle Cafe, 5 Koek Rd, #01-03 (Cuppage Plaza). 9:30AM-9:30PM. Cheerless but air-conditioned and cheap, this perennially packed eatery offers a range of Singaporean noodles, snacks and drinks. The most popular dish is economy rice: pick and choose from 20+ options on display, with a plate of rice and three dishes around $3. Second outlet in Far East Plaza, Scotts Rd. (updated Sep 2021)
 
@@ -105,7 +104,7 @@ Almost every shopping mall has its own food court, but for gourmet snacking, it'
 
 Orchard Road is brimming with fiercely competitive restaurants. One easy option is Crystal Jade, a popular chain of Chinese restaurants with outlets in nearly every major shopping mall in Singapore, including Suntec City, Shaw House, and Paragon.
 
-11 Chatterbox, 333 Orchard Rd (Hilton level 5), ☏ +65 6831 6291. Possibly Singapore's most famous chicken rice, and at $25/plate after tax, certainly its most expensive — but you do get very generous portions, air-con, red-lacquered furniture in a very posh hotel. (For the budget alternative, go to Mr Chicken Rice in the Downtown East Mall in the very east of Singapore, run by Chatterbox's original chef and offering the same for $3!)
+11 Chatterbox, 333 Orchard Rd (Hilton level 5), ☏ +65 6831 6291. Possibly Singapore's most famous chicken rice, and at $25/plate after tax, certainly its most expensive - but you do get very generous portions, air-con, red-lacquered furniture in a very posh hotel. (For the budget alternative, go to Mr Chicken Rice in the Downtown East Mall in the very east of Singapore, run by Chatterbox's original chef and offering the same for $3!)
 12 Crystal Jade Palace, 391 Orchard Rd #04-19 (Ngee Ann City), ☏ +65 6735 2388. Lunch 11:30AM-3PM, dinner 6-10:30PM. The flagship of the chain, which serves authentic Cantonese food. Dinner here is fairly expensive, but the set lunch for two is good value at $50. The dim sum during the lunch time is worth trying as well as the roasted meat and wonton noodles during lunchtime. Reservations recommended as queues can be as long as an hour. Lunch $25, dinner $50. (updated Nov 2017)
 13 Mezza9, 10-12 Scotts Rd 2F (Grand Hyatt), ☏ +65 6730 7189. Sun 11:30AM-3PM. Famous for their Sunday Munch, one of the best of Singapore's many extravagant hotel brunches. Worth a splurge at $178++ per person, including free-flowing Perrier-Jouet champagne. Reservations essential. Closed until 2025 for renovation.. (updated Nov 2017)
 14 Sushi Kanazawa, 360 Orchard Rd #02-13 (International Bldg), ☏ +65 6738 3833. Daily, noon-3PM, 6-10PM. Tiny hole-in-the-wall sushi joint, but the ten counter seats here are packed every night thanks to their simple concept: pay a flat fee and the chef makes all the sushi you can eat. You can either let the chef pick, or order off a ten-page menu. Reservations highly advisable. Around $40/50 lunch/dinner, +$10 on weekends. (updated Oct 2022)
@@ -118,7 +117,7 @@ If you're looking for a caffeinated beverage, you're spoiled for choice in Orcha
 1 Halcyon & Crane, 290 Orchard Road #03-09 (Paragon 3F), ☏ +65 9727 5121. Daily 11AM-8:30 PM. Peaceful, wood-toned cafe with all-day breakfast and interesting drinks. Order a jasmine tea here and you'll get actual jasmine flowers in your cup. Drinks around $10. (updated Oct 2022)
 If you're looking for something stronger, Singapore's nightlife is concentrated just south of Orchard Rd by the riverside, but there are still a few notable nightspots. The largest cluster is 2 Emerald Hill opposite Somerset MRT, a beautifully restored cluster of shophouse bars. Most bars here require patrons to be 25+.
 
-3 Alley Bar, 2 Emerald Hill, ☏ +65 6732 6966. Daily 5PM-2AM or later. True to its name, this bar has been set up in an alley between two shophouses — not that you'd really notice from the slick modern decor and the endless parade of Singapore's nouveaux riches. $10-15. (updated Nov 2017)
+3 Alley Bar, 2 Emerald Hill, ☏ +65 6732 6966. Daily 5PM-2AM or later. True to its name, this bar has been set up in an alley between two shophouses - not that you'd really notice from the slick modern decor and the endless parade of Singapore's nouveaux riches. $10-15. (updated Nov 2017)
 4 Number 5, 5 Emerald Hill, ☏ +65 6732 0818. Mon-Sat noon-2AM, Sun 5PM-2AM. Friendly bar housed in a 1910 Peranakan shophouse. Downstairs is loud, upstairs is quieter with a pool table. The cocktails are good, but for a fiery kick try their Chilli Vodka or its industrial-strength big brother, Chilli Padi Vodka.
 A few places of interest lurk elsewhere along the strip.
 

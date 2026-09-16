@@ -1,15 +1,10 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Singapore Travel Assistant",
   description:
-    "A travel planning assistant that grounds destination answers in a curated knowledge base and pulls live weather and currency data through MCP tools.",
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+    "Answers Singapore travel questions from a curated guide corpus, with live weather and currency from MCP tools.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

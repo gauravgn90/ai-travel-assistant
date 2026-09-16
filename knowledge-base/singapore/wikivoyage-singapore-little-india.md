@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-little-india
-title: "Wikivoyage: Singapore — Little India"
+title: "Wikivoyage: Singapore - Little India"
 url: https://en.wikivoyage.org/wiki/Singapore/Little_India
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, culture, food, temples, markets]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — Little India
+
+# Wikivoyage: Singapore - Little India
 
 Little India is, as the name promises, the centre for the large Indian community in Singapore. While a rather sanitised version of the real thing, Little India retains its distinct identity without degenerating into a mere tourist attraction and is one of the most colourful and attractive places to visit in Singapore.
 
@@ -25,7 +24,7 @@ Hailing a taxis can be difficult on the crowded main streets like Serangoon Road
 
 Little India's primary attraction is the district itself. Here too you can find the gaily painted shophouses that are an icon of Singapore, but now most of the Chinese signs (almost) disappear to be replaced with Tamil, Hindi, Bengali and other Indian scripts. Stores hawk saris and gold bangles, spices and incense waft in from the doorways and Bollywood's latest soundtracks blare from every other alleyway.
 
-1 Sri Veeramakaliamman Temple, 141 Serangoon Rd. Little India's busiest and oldest temple, dating back to 1881 — although the present structure was completed in 1986. The temple is particularly busy on Tuesdays, Fridays and Sundays. Be sure to take your shoes off before venturing inside. Free.
+1 Sri Veeramakaliamman Temple, 141 Serangoon Rd. Little India's busiest and oldest temple, dating back to 1881 - although the present structure was completed in 1986. The temple is particularly busy on Tuesdays, Fridays and Sundays. Be sure to take your shoes off before venturing inside. Free.
 
 ## Do
 
@@ -39,7 +38,7 @@ The central streets of Little India are packed with stalls selling all sorts of 
 
 1 Mustafa Centre, 145 Syed Alwi Road (off Serangoon Rood near Farrer Park MRT), ☏ +65 6295 5855. Daily 24 hours. Singapore's supreme discount department store: floor after floor of absolutely everything at competitive prices, ranging from Rolex watches and washing machines to fresh mangoes, bags of lentils and tailored suits. The gold jewelry floors, now located in an annex, are a sight to behold, and the exchange counters in front are probably the best place in Singapore to exchange money at competitive rates, though the range of currencies accepted is limited to major Western, Asian and Middle Eastern currencies. Mustafa Centre also offers travel, hotel reservation and visa assistance services. There are now many mini-Mustafa outlets scattered along Serangoon Rd, but the original and by far the largest is the one facing Syed Alwi Rd. (updated Sep 2022)
 2 Tekka Market (Tekka Centre), 665 Buffalo Road. Little India is a cacophony of car horns, bicycle bells and the vibrant chatter of its residents. This explosion of sights, smells and sounds in Tekka Market is only a short walk from Little India MRT Station. Tekka (as it is locally known), has a plethora of stalls selling Indian, Malay and Chinese food that draws crowds from all over Singapore. There’s also a wet market stocked with the freshest vegetables, meat, fish, spices and flowers. Also available are souvenirs such as brass oil lamps and pots, or fresh garlands of jasmine, whose scent is signature aroma of Little India.
-3 Sim Lim Square, 1 Rochor Canal Road, ☏ +65 6338 3859. 10:30AM-9PM. Right across the street from Little India, Sim Lim is Singapore's Akihabara, a giant electronics Mecca squeezed into one building, with hundreds upon hundreds of tightly packed specialist stores. Some competitive prices can be found here on computer parts, but consumer electronics and cameras are not particularly cheap in comparison with large on-line retailers, and a good number of shops on the first and second floors engage in scamming tourists and wrecking their holidays. Upon stepping in, immediately skip the first and second floors (a big tourist trap) and start shopping at floors 4-5, descending to 3 later, not forgetting the back corridors — these are the only places to consider shopping. To reiterate, avoid' the first and second floor shops as many of them have a tendency to grossly overcharge or cheat tourists by means of pricing tricks (omitting tax, selling included accessories separately, adding unilateral fees, and similar misleading or deceptive tactics) and the occasional outright substitution fraud; unless you know exactly what you're doing and/or need something unusual, you might want to shop at Mustafa instead. The third floors and above are the real haven for computer geeks looking for cheap bargains and to upgrade or put together a system; grab price lists from the Sim Lim entrance and do your on-line price research. Sim Lim Tower, just across the street, also has a few shops but these focus on electronic components; it pales in comparison sizewise.
+3 Sim Lim Square, 1 Rochor Canal Road, ☏ +65 6338 3859. 10:30AM-9PM. Right across the street from Little India, Sim Lim is Singapore's Akihabara, a giant electronics Mecca squeezed into one building, with hundreds upon hundreds of tightly packed specialist stores. Some competitive prices can be found here on computer parts, but consumer electronics and cameras are not particularly cheap in comparison with large on-line retailers, and a good number of shops on the first and second floors engage in scamming tourists and wrecking their holidays. Upon stepping in, immediately skip the first and second floors (a big tourist trap) and start shopping at floors 4-5, descending to 3 later, not forgetting the back corridors - these are the only places to consider shopping. To reiterate, avoid' the first and second floor shops as many of them have a tendency to grossly overcharge or cheat tourists by means of pricing tricks (omitting tax, selling included accessories separately, adding unilateral fees, and similar misleading or deceptive tactics) and the occasional outright substitution fraud; unless you know exactly what you're doing and/or need something unusual, you might want to shop at Mustafa instead. The third floors and above are the real haven for computer geeks looking for cheap bargains and to upgrade or put together a system; grab price lists from the Sim Lim entrance and do your on-line price research. Sim Lim Tower, just across the street, also has a few shops but these focus on electronic components; it pales in comparison sizewise.
 4 City Square Mall (Farrer Park Station, Exit I). Quite a large mall with mostly mid-range goods, on the edge of Little India.
 The other shopping options in Little India cater more to the Indian market:
 
@@ -53,7 +52,7 @@ The other shopping options in Little India cater more to the Indian market:
 
 ## Eat
 
-The thing to eat in Little India is obviously Indian food. Both southern and northern cuisines are well represented, food is cheap even by Singaporean standards, portions are generous and vegetarians in particular will have a field day. Note that these are authentic Indian places and people around you will be eating the way Indians do, namely by hand — it's best to shed your inhibitions and dig in, although cutlery can be provided on request.
+The thing to eat in Little India is obviously Indian food. Both southern and northern cuisines are well represented, food is cheap even by Singaporean standards, portions are generous and vegetarians in particular will have a field day. Note that these are authentic Indian places and people around you will be eating the way Indians do, namely by hand - it's best to shed your inhibitions and dig in, although cutlery can be provided on request.
 
 ### Budget
 
@@ -99,9 +98,9 @@ Farrer Park MRT station on the Northeast (purple) line gives convenient access t
 
 #### Hotels
 
-3 Hotel 165, 165 Kitchener Road, ☏ +65 6392 4855. Basic but adequate accommodation within striking distance of Mustafa — and Desker Rd. $70. (updated Jan 2017)
+3 Hotel 165, 165 Kitchener Road, ☏ +65 6392 4855. Basic but adequate accommodation within striking distance of Mustafa - and Desker Rd. $70. (updated Jan 2017)
 4 Penta Hotel, 33 Birch Rd (Farrer Park MRT), ☏ +65 6299 6311. Rooms have air-con and the location near Mustafa and the MRT is fairly good. $70.
-5 Royal India Hotel, 88 Syed Alwi Rd (opp Mustafa), ☏ +65 6297 7488. Another cheap hotel that's perhaps a small cut above the rest — their website advertises "homogenous tiles flooring", and offers discounts for advance booking. $100.
+5 Royal India Hotel, 88 Syed Alwi Rd (opp Mustafa), ☏ +65 6297 7488. Another cheap hotel that's perhaps a small cut above the rest - their website advertises "homogenous tiles flooring", and offers discounts for advance booking. $100.
 6 Tai Hoe Hotel, 163 Kitchener Road, ☏ +65 6293 9122, reservation@taihoehotel.com.  $120. (updated Oct 2022)
 
 ### Mid-range

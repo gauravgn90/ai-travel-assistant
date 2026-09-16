@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-east-coast
-title: "Wikivoyage: Singapore — East Coast"
+title: "Wikivoyage: Singapore - East Coast"
 url: https://en.wikivoyage.org/wiki/Singapore/East_Coast
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, food, beaches, outdoors, changi]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — East Coast
+
+# Wikivoyage: Singapore - East Coast
 
 The East Coast of Singapore is largely residential and offers few sights as such; most visitors just cross it on their way from and to Changi Airport. For Singaporeans, on the other hand, the main attractions are 20 km of white sandy beach and the food: this is the home of many of Singapore's culinary icons. The true home of Singapore's Malay community is in Geylang Serai, traces of Peranakan and Eurasian culture still linger in Katong, the fleshpots of Geylang offer cheap lodging and late-night food, and the East Coast also offers Singapore's solitary flashback to the past, the rustic little island of Pulau Ubin.
 
@@ -79,7 +78,7 @@ Katong is the undisputed home of laksa, the coconutty noodle soup that's one of 
 
  328 Katong Laksa, 51 East Coast Rd (Across the street from #49). 8:30AM-9PM. This was one of the combatants of the "laksa wars" of yore. Now franchised all over Singapore, but this is the original, still supervised by the owner. Do try the otah (spicy fish paste). $4-6.
  Marine Parade Laksa, 59 East Coast Rd #01-57/59. Run by the people who originally ran #49, although some think the quality has gone down (see Zhen Shan Mei in Jurong for the competition).
-Go to 1 Old Airport Road Food Centre, possibly the best collection of hawker food in Singapore, and now even easier to reach using the Circle Line (it's a short walk from Dakota MRT station). From noodles to satay to seafood, the food here is widely acclaimed and Singaporeans come from all around for dinner — which unfortunately means a crowded car park and even more crowded tables. Just follow the queues and you won't go wrong.
+Go to 1 Old Airport Road Food Centre, possibly the best collection of hawker food in Singapore, and now even easier to reach using the Circle Line (it's a short walk from Dakota MRT station). From noodles to satay to seafood, the food here is widely acclaimed and Singaporeans come from all around for dinner - which unfortunately means a crowded car park and even more crowded tables. Just follow the queues and you won't go wrong.
 
  Whitley Road Big Prawn Noodle, Old Airport Road Food Centre #01-98. Tue-Fri 9AM-8PM, Sat Sun 9AM-9PM. Exactly as it says, big prawn noodles, although the number of prawns depends on the size of the bowl ordered. All that flavoursome soup comes from prawn heads. $4-9.
 For a nicer seaside atmosphere, 2 East Coast Lagoon Food Village in East Coast Park is a popular food destination and quite possibly the nicest hawker centre in Singapore, with lush greenery and occasional sea breezes. If you're savvy, the seafood here is a much better choice than the pricier restaurants in the nearby East Coast Seafood Centre. Get here by cab (or by bus as noted in #Get in).

@@ -1,19 +1,18 @@
 ---
 id: wikivoyage-singapore-chinatown
-title: "Wikivoyage: Singapore — Chinatown"
+title: "Wikivoyage: Singapore - Chinatown"
 url: https://en.wikivoyage.org/wiki/Singapore/Chinatown
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, culture, food, temples, shopping]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — Chinatown
+
+# Wikivoyage: Singapore - Chinatown
 
 Singapore's Chinatown is the traditional Chinese quarters of town, and while the entire city is largely Chinese these days, the area does retain some of its own charm.  The area is also known as Niu Che Shui (牛车水, lit. "bullock cart water") in Chinese and Kreta Ayer (lit. "water cart") in Malay, both names referring to the bullock carts that used to haul in drinking water. Chinatown became the heart of Singapore's Cantonese community as the more numerous Hokkiens and Teochews scattered to other parts of the island, and while the offerings have diversified considerably in the 21st century, Chinatown remains best known to Singaporeans as the place for delicious and affordable Cantonese food.
 
 ## Understand
 
-The area between Pagoda Street and Smith Street has been tarted up considerably for tourists, but workaday Chinatown continues south and east, merging seamlessly into the Central Business District. Tanjong Pagar is the unofficial home of Singapore's gay community, with many watering holes in restored shophouses, while Club Street and Ann Siang Hill caters more to the expat, yuppie and hipster crowd with small, intimate eateries offering excellent (if pricey) Western and modern Singaporean fare. Hence Chinatown is quite the paradox — simultaneously the gaudiest and trendiest district in Singapore.
+The area between Pagoda Street and Smith Street has been tarted up considerably for tourists, but workaday Chinatown continues south and east, merging seamlessly into the Central Business District. Tanjong Pagar is the unofficial home of Singapore's gay community, with many watering holes in restored shophouses, while Club Street and Ann Siang Hill caters more to the expat, yuppie and hipster crowd with small, intimate eateries offering excellent (if pricey) Western and modern Singaporean fare. Hence Chinatown is quite the paradox - simultaneously the gaudiest and trendiest district in Singapore.
 Keong Saik Road was once a red-light district, but the last brothels closed down amidst the COVID-19 pandemic in the early 2020s, and the area has been thoroughly gentrified into a hip and trendy dining and night life destination.
 
 ### Tourist information
@@ -27,7 +26,7 @@ There are several MRT stations around this area. Exit A (Pagoda Street) Chinatow
 ## See
 
 Chinatown's primary attraction is the town itself, composed as it is of restored shophouses full of strange little shops selling everything from plastic Buddhas to dried seahorses. Wander at random and see what you can find!
-Chinatown is at its busiest and most colourful in the month preceding the Chinese New Year (Jan-Feb), when the streets are decked with festive decorations. Street markets are thronged with people, shows entertain the crowds and the drums of lion dances echo into the night. The festivities in a midnight countdown and a roar of firecrackers atop People's Park Complex, showering flaming confetti down below (steer clear!) — and for the two following days virtually everything is closed.
+Chinatown is at its busiest and most colourful in the month preceding the Chinese New Year (Jan-Feb), when the streets are decked with festive decorations. Street markets are thronged with people, shows entertain the crowds and the drums of lion dances echo into the night. The festivities in a midnight countdown and a roar of firecrackers atop People's Park Complex, showering flaming confetti down below (steer clear!) - and for the two following days virtually everything is closed.
 
 ### Temples and mosques
 
@@ -53,7 +52,7 @@ Held up as a shining example of racial and religious tolerance in "National Educ
 
 ## Do
 
-Probably the most strenuous activity in Chinatown is avoiding touting tailors — which, incidentally, is illegal and can be reported to the police.
+Probably the most strenuous activity in Chinatown is avoiding touting tailors - which, incidentally, is illegal and can be reported to the police.
 
  Toy Factory Theatre Ensemble, ☏ +65 6222 1526. A theatre group that constantly pushes the limits of free expression in Singapore. Performances at the Attic (21 Tanjong Pagar Rd, 4F) and the Theatrette (17A Smith St).
 
@@ -112,7 +111,7 @@ One of Singapore's best food hawker centres, 8 Maxwell Food Centre at 2 Murray S
 9 Han Kook Gwan, 26 Tanjong Pagar Rd, ☏ +65 6224 2881. Swish-looking two-floor Korean eatery that offers both expensive bulgogi barbeques and more reasonably priced rice and noodle dishes. Try the dolsot bibimbap (rice with toppings in a sizzling stone bowl), $9/14 lunch/dinner.
 10 Hometown Restaurant, 9 Smith St, ☏ +65 6372 1602. Serves up authentic Sichuan food, meaning fearsome quantities of dried chili, tingly Sichuan pepper, salt and oil. The tea-smoked duck ($10) and mapo doufu ($6) are both excellent, while bowls of dan dan noodles go for just $5.
 11 Jing Hua Xiao Chi, 21 Neil Rd, ☏ +65 6221 3060. Closed Wed. Well known for its dumplings, above all the Beijing-style jiaozi, but the Shanghai-style xiao long bao aren't bad either. Large servings around $9. (updated Oct 2017)
-12 Tiong Shian Porridge Centre, 265 New Bridge Rd, ☏ +65 6221 1596. 7AM-11:30PM, closed Mon. Always-packed eatery in the heart of Chinatown, specialising in rice porridge and claypots, with a sideline in seafood dishes. Try their famous frog claypot (from $8), but the squeamish may want to avoid the hoon chang — large intestine — dishes. Note your table number, then order and pay at cashier; there's more seating on the 2nd floor if the street level is full. $10.
+12 Tiong Shian Porridge Centre, 265 New Bridge Rd, ☏ +65 6221 1596. 7AM-11:30PM, closed Mon. Always-packed eatery in the heart of Chinatown, specialising in rice porridge and claypots, with a sideline in seafood dishes. Try their famous frog claypot (from $8), but the squeamish may want to avoid the hoon chang - large intestine - dishes. Note your table number, then order and pay at cashier; there's more seating on the 2nd floor if the street level is full. $10.
 
 ### Splurge
 
@@ -145,7 +144,7 @@ While there are a few ordinary hotels, the most interesting accommodation option
 
 ### Mid-range
 
-Keong Saik Road, at the western edge of town, is a former red-light district which still retains more than its fair share of dodgy karaoke lounges — as well as a number of cheap, largely identical shophouse hotels, which look rather attractive from the outside but are all quite cramped, stuffy and dingy inside.
+Keong Saik Road, at the western edge of town, is a former red-light district which still retains more than its fair share of dodgy karaoke lounges - as well as a number of cheap, largely identical shophouse hotels, which look rather attractive from the outside but are all quite cramped, stuffy and dingy inside.
 
 3 Hotel 1929, 50 Keong Saik Rd (Outram Park MRT), ☏ +65 6347 1929. Time Asia's Boutique Hotel of the Year in 2004, this renovated super-stylish shophouse is best known for its extraordinary collection of chairs, covering the gamut from designer masterpieces to a barber's chair a century old. Head and shoulders above the other hotels in Keong Saik, the rooms feature all mod cons including flat-panel TVs and free broadband internet in every room, but the "superior" rooms are tiny and steeply priced for what you get; you might want to consider splurging on one of the rooftop suites complete with outdoor hot tub. $200.
 4 Hotel Re!, 175A Chin Swee Rd (8 min from Outram Park MRT), ☏ +65 6827 8288. Former primary school repainted with eyeball-blistering fluorescent shades and thus now a 12-storey, 140-room "retro boutique" hotel, although it still retain a bit of school dorm vibe.  Slightly inconvenient location on a hilltop (Pearl's Hill Park), a bit of a hike from Outram MRT station. $200.

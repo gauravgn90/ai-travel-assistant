@@ -1,0 +1,18 @@
+node_modules
+.next
+.git
+.gitignore
+
+# Built inside the image by `npm run ingest`.
+data
+
+# Secrets are passed at run time, never baked into an image.
+.env
+.env.local
+
+*.pdf
+*.log
+*.tsbuildinfo
+Dockerfile
+.dockerignore
+compose.yaml

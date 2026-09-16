@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-riverside
-title: "Wikivoyage: Singapore — Riverside and Marina Bay"
+title: "Wikivoyage: Singapore - Riverside and Marina Bay"
 url: https://en.wikivoyage.org/wiki/Singapore/Riverside
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, attractions, museums, nightlife, marina-bay]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — Riverside and Marina Bay
+
+# Wikivoyage: Singapore - Riverside and Marina Bay
 
 The Singapore River forms a central artery in Singapore's densely packed Central Business District (CBD).  The north bank of the river is where Raffles landed and founded his colony, and to this day many central government buildings can be found in the area.  The newer south bank, laden with skyscrapers, is where Singapore's bankers make (or break) their fortunes.  Between the two are the bulk of Singapore's nightspots, found along the riverside streets of Boat Quay, Clarke Quay and Robertson Quay.
 
@@ -138,7 +137,7 @@ The nightlife scene across all the Quays took a big hit from COVID and another w
 1 Brewerkz, 30 Merchant Rd #01-05/06 (Riverside Point, opp Clarke Quay), ☏ +65 6438 7438. Daily noon-midnight. Singapore's first microbrewery, opened 1997 and still going strong. There are now several franchises, but this is the original. Their brews run the gamut from classic pilsners and pale ales to wacky seasonal specials (Guava Sour, anyone?), also available in handy 4-glass sampler sets ($18). Indoor and outdoor seating, with a wide range of pub grub in huge portions. Beers from $15/pint, mains $22-29. (updated Feb 2021)
 2 Equinox, 2 Stamford Rd, ☏ +65 6837 3322. The five bars and restaurants here offer the best nighttime views of the city, but prices are correspondingly expensive ($15 and up for a drink). For a cigar and live jazz, head to CitySpace (floor 70), while New Asia  is a more casual place for a drink. Entry is through the Swissotel entrance on Stamford Rd.
 3 Harry's Bar, 28 Boat Quay, ☏ +65 6538 3029. The favourite watering hole of Nick Leeson, the "Rogue Trader" who brought down the 233-year-old Barings Bank and was once arrested here for indecent exposure. There are now franchises all over town, but this is the original. Try the Bank Breaker, an unlikely shot of whisky and Midori, which like Leeson's escapades goes down smooth but leaves a bitter taste in your mouth. Live music most nights.
-4 Long Bar, 1 Beach Rd (Raffles Hotel, 2nd floor), ☏ +65 6412 1816, dining.singapore@raffles.com. 11:30AM-1:30AM. The supposed birthplace of the Singapore Sling, a syrupy sweet pink concoction of gin, cherry liquor, and other mysterious ingredients, often including pineapple juice. The two-floor bar is large and a bit of a tourist trap, but drinking a Sling at the beautifully decorated wood-paneled bar and throwing the accompanying peanut shells on the floor should be on every visitor's agenda — if you can stomach paying $36 for a premixed drink poured out of a pitcher. The current recipe is likely sweeter than the original recipe, but you can ask for a drier version. According to one historian, slings were popular in Singapore even before their supposed invention at the Raffles' Long Bar in 1915. Moreover, the Long Bar has moved from its original location within the hotel.
+4 Long Bar, 1 Beach Rd (Raffles Hotel, 2nd floor), ☏ +65 6412 1816, dining.singapore@raffles.com. 11:30AM-1:30AM. The supposed birthplace of the Singapore Sling, a syrupy sweet pink concoction of gin, cherry liquor, and other mysterious ingredients, often including pineapple juice. The two-floor bar is large and a bit of a tourist trap, but drinking a Sling at the beautifully decorated wood-paneled bar and throwing the accompanying peanut shells on the floor should be on every visitor's agenda - if you can stomach paying $36 for a premixed drink poured out of a pitcher. The current recipe is likely sweeter than the original recipe, but you can ask for a drier version. According to one historian, slings were popular in Singapore even before their supposed invention at the Raffles' Long Bar in 1915. Moreover, the Long Bar has moved from its original location within the hotel.
 5 Pump Room, 3B River Valley Road, The Foundry (Clarke Quay), ☏ +65-63342628. Daily noon-3AM. Very popular microbrewery/bistro at the heart of Clarke Quay. Full menu. Indoor and outdoor seating. Live music nightly (except Mondays).
 6 Timbre, 1 Old Parliament Lane #01-04 (The Annex at The Old Parliament House), ☏ +65 6336 3386. Daily 6PM-1AM. In a beautifully renovated colonial house opposite Boat Quay, this has some of the best views in town and is one of only a few places in Singapore specializing in local live music. Indoor and outdoor seating. (updated Oct 2017)
 
@@ -150,7 +149,7 @@ The nightlife scene across all the Quays took a big hit from COVID and another w
 
 At all clubs listed below, arrive early (or very late) because otherwise you may be stuck in line for a while. ID is theoretically required but rarely checked.
 
-8 Zouk, 3C River Valley Road, #01-05, The Cannery, ☏ +65 6738 2988. Wed-Fri 9AM-3PM, Sat 9PM-4AM. Singapore's best-known nightclub and in fact a complex of 4 spaces: Zouk for harder dance music, Capital for loungier stuff, Phuture for experimental edge and the RedTail Bar for chilling out. Prices vary per event, but start from $45/35 for men/women, usually including two drinks. The place is happening especially when foreign DJs are in town — which is more often than not! No shorts or sandals. (updated Oct 2022)
+8 Zouk, 3C River Valley Road, #01-05, The Cannery, ☏ +65 6738 2988. Wed-Fri 9AM-3PM, Sat 9PM-4AM. Singapore's best-known nightclub and in fact a complex of 4 spaces: Zouk for harder dance music, Capital for loungier stuff, Phuture for experimental edge and the RedTail Bar for chilling out. Prices vary per event, but start from $45/35 for men/women, usually including two drinks. The place is happening especially when foreign DJs are in town - which is more often than not! No shorts or sandals. (updated Oct 2022)
 
 ## Sleep
 

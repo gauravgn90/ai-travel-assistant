@@ -3,10 +3,9 @@ id: wikipedia-culture-of-singapore
 title: "Wikipedia: Culture of Singapore"
 url: https://en.wikipedia.org/wiki/Culture_of_Singapore
 publisher: Wikipedia
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [culture, festivals, etiquette, language, food]
+retrievedAt: 2026-09-16
 ---
+
 # Wikipedia: Culture of Singapore
 
 The culture of Singapore has changed greatly over the millennia. Its contemporary modern culture consists of a combination of Asian (Malay / Tamil / Chinese) and European (British) cultures. Singapore has been dubbed as a country where "East meets West", "Gateway to Asia" and a "Garden city".

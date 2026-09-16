@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    # Keys stay on the host. Copy .env.example to .env.local and fill in one.
+    env_file:
+      - path: .env.local
+        required: false
+    restart: unless-stopped

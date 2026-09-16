@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-sentosa
-title: "Wikivoyage: Singapore — Sentosa and HarbourFront"
+title: "Wikivoyage: Singapore - Sentosa and Harbourfront"
 url: https://en.wikivoyage.org/wiki/Singapore/Sentosa_and_Harbourfront
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, family, theme-parks, beaches, attractions]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — Sentosa and HarbourFront
+
+# Wikivoyage: Singapore - Sentosa and Harbourfront
 
 Sentosa is an island just off the southern coast of Singapore. This district also includes Harbourfront and the Southern Islands.
 
@@ -139,7 +138,7 @@ As you might expect from a giant amusement park, food on Sentosa is (by Singapor
 
 1 Seah Im Food Centre, Seah Im Rd (across from Vivocity). Popular with locals, this small hawker centre (non-air conditioned) has a range of Indian Muslim food stalls and a variety of local cuisine. $4~6. (updated Aug 2023)
 2 Food Republic VivoCity, 1 HarbourFront Walk, #03-01. Retro themed like a collection of 1960s hawkers, only with air-conditioning (and hygiene). Slightly expensive for a food court, but the selection is good and it's usually packed. $5-7. (updated Aug 2023)
-3 Malaysian Food Street, Resorts World Sentosa. Mon Tue Thu 11AM-10PM, Fri Sat 9AM-11PM, Sun 9AM-10PM, closed on Wednesday. Notable for its retro 1970s depiction of Malaysia, with food hawkers selling Penang laksa and KL hokkien mee. Fits in with the theme park facade, but any good foodie would rather head across the causeway for the real thing. $6-9. (updated Aug 2023)
+3 Malaysian Food Street, Resorts World Sentosa. Mon Tue Thu 11AM-10PM, Fri Sat 9AM-11PM, Sun 9AM-10PM, closed on Wed. Notable for its retro 1970s depiction of Malaysia, with food hawkers selling Penang laksa and KL hokkien mee. Fits in with the theme park facade, but any good foodie would rather head across the causeway for the real thing. $6-9. (updated Aug 2023)
 
 ### Mid-range
 

@@ -1,517 +1,338 @@
-# AI Travel Planning Assistant — Singapore
+# Singapore Travel Assistant
 
-A context-aware travel assistant that answers destination questions from a curated document
-knowledge base (RAG) and pulls live weather and currency data through MCP tools, combining both
-when a question needs both.
+A travel planning assistant for Singapore. Destination questions are answered from a local
+knowledge base of travel guides; weather and currency questions go out to MCP tool servers. A
+question that needs both gets both, and the answer says which part came from where.
 
-Ask *"Create a three-day Singapore itinerary for next week and adjust it to the weather forecast"*
-and the assistant retrieves attractions, indoor alternatives and transport guidance from the
-corpus, calls an MCP weather tool for the forecast, and produces a day-by-day plan that says which
-part came from the guides, which came from the tool, and which is its own suggestion.
+Built with Next.js, LangChain, a local sentence-transformer embedding model and a FAISS index.
+The chat model is pluggable: Google Gemini, OpenAI, Anthropic or Groq.
 
-Built with Node.js 24, Next.js 16 (App Router), LangChain, and the official MCP TypeScript SDK.
+## Setup
 
----
-
-## Table of contents
-
-- [What it does](#what-it-does)
-- [Quick start](#quick-start)
-- [Running without any API key](#running-without-any-api-key)
-- [Architecture](#architecture)
-- [Knowledge base](#knowledge-base)
-- [RAG workflow](#rag-workflow)
-- [MCP tools](#mcp-tools)
-- [Prompt and context strategy](#prompt-and-context-strategy)
-- [Configuration](#configuration)
-- [Commands](#commands)
-- [Project layout](#project-layout)
-- [Design decisions](#design-decisions)
-- [Limitations](#limitations)
-
----
-
-## What it does
-
-| Capability | How |
-| --- | --- |
-| Destination knowledge | Hybrid retrieval over 15 documents / ~505 chunks from Wikivoyage, Wikipedia and curated Singapore Tourism Board summaries |
-| Grounded answers | Every destination fact carries an `[S1]`-style marker resolving to a source title and URL |
-| Live weather | MCP tool over Open-Meteo — current conditions and a 1–7 day forecast with an indoor/outdoor call per day |
-| Currency conversion | MCP tool over Frankfurter (ECB reference rates), with the publication date attached |
-| Combined answers | One turn can retrieve, call several tools in parallel, and fuse the results |
-| Multi-turn memory | Transcript plus pinned preferences (budget, party, trip length, diet, interests) carried across turns |
-| Honest gaps | An absolute-similarity floor detects "the corpus does not cover this"; tool failures are reported, never papered over |
-| Provider choice | OpenAI, Anthropic, Groq or Google, selected by one environment variable |
-
----
-
-## Quick start
-
-Requires **Node.js 24** (`.nvmrc` pins 24.18.0) and one LLM API key.
+Requires Node 24 or newer (it runs the TypeScript tool servers and the ingest script directly).
 
 ```bash
-git clone <repository-url>
-cd ai-travel-assistant
 npm install
-
-cp .env.example .env.local
-# edit .env.local: set LLM_PROVIDER and the matching API key
-
-npm run kb:fetch     # download the source documents (~2 min, no key needed)
-npm run kb:ingest    # chunk + embed into data/index (~1 min with local embeddings)
-npm run dev          # http://localhost:3000
+cp .env.example .env.local     # pick a provider and set its key
+npm run fetch                  # refresh the knowledge base from the wikis (optional)
+npm run ingest                 # build the vector index, about 30 seconds
+npm run dev                    # http://localhost:3000
 ```
 
-`kb:fetch` and `kb:ingest` are one-time steps. The fetched documents are committed to the
-repository, so `kb:fetch` is only needed to refresh them.
+The repository ships with the knowledge base already fetched, so `npm run fetch` is only needed to
+pull the latest version of the source pages.
 
-Check the wiring at any time:
+`npm run ingest` downloads the embedding model on first run (about 90 MB) and writes
+`data/index.faiss` and `data/chunks.json`. Re-run it after changing anything under
+`knowledge-base/`.
+
+FAISS and the ONNX runtime are native modules that need their install scripts to run. npm only
+runs scripts for packages listed in the `allowScripts` field of `package.json`, which already names
+the four that need it.
+
+### Docker
 
 ```bash
-curl -s localhost:3000/api/health | jq
+docker compose up --build
 ```
 
-It reports each subsystem separately — provider key present, index built, MCP servers connected —
-so a half-configured install says which half is missing.
+Serves on http://localhost:3000, and needs nothing installed on the host but Docker - not even
+Node.
 
-### Terminal client
+#### Credentials
+
+Keys stay in `.env.local` on the host and are handed to the container at run time. The file is in
+both `.gitignore` and `.dockerignore`, so it is never committed and never copied into an image.
+`compose.yaml` reads it:
+
+```yaml
+env_file:
+  - path: .env.local
+    required: false
+```
+
+`required: false` means the container still starts without the file - it answers from the knowledge
+base and reports a missing key only when a question reaches the model.
+
+Without Compose the same file works as `docker run --env-file`, but that parser is stricter: it
+keeps surrounding quotes and trailing `# comments` as part of the value, where Compose strips both.
+So write `GOOGLE_API_KEY=AIza...` with nothing after it, as `.env.example` does, and either command
+works:
 
 ```bash
-npm run ask                                   # interactive, multi-turn
-npm run ask -- "What indoor attractions can I visit?"   # one-shot
+docker run --env-file .env.local -p 3000:3000 travel-assistant
 ```
 
-Same orchestrator as the web UI, no browser needed.
-
----
-
-## Running without any API key
-
-Two of the three subsystems need no credentials at all, which makes it possible to verify most of
-the application when LLM quota is exhausted.
+To override one value without editing the file, pass it after the env file - the later flag wins:
 
 ```bash
-# Retrieval — embeds locally, calls no vendor API
-EMBEDDING_PROVIDER=local npm run kb:ingest
-npm run kb:search -- "What indoor attractions can I visit?"
-
-# MCP — connects both servers, calls every tool, asserts the failure path
-npm run mcp:check
-
-# Index health
-npm run kb:stats
-
-# Unit tests
-npm test
+docker run --env-file .env.local -e LLM_PROVIDER=groq -p 3000:3000 travel-assistant
 ```
 
-`kb:search` prints the fused rank, the raw cosine and the BM25 contribution for every chunk, so a
-retrieval problem can be told apart from a generation problem without spending a token.
-`mcp:check` exercises the full client↔server path including a deliberately invalid currency, to
-prove failures degrade cleanly.
+Environment variables are visible to anyone who can run `docker inspect` on the container. That is
+fine for a local demo; a deployment should use its platform's secret store instead.
 
-**Local embeddings.** `EMBEDDING_PROVIDER=local` runs `all-MiniLM-L6-v2` in-process through ONNX
-Runtime. No key, no quota; weights (~90 MB) download once and cache. This is the default when
-`LLM_PROVIDER` is `anthropic` or `groq`, because neither vendor sells an embedding endpoint.
+#### Changing a key or a provider
 
-**Local generation.** `OPENAI_BASE_URL` points the OpenAI-compatible path at any other host, so the
-whole assistant runs against Ollama or LM Studio with no code change:
+No rebuild. All four provider SDKs are ordinary dependencies, so they are already in the image;
+only the environment decides which one is used. But the values are read when a container is
+*created*, not when it starts, so `restart` is not enough:
 
 ```bash
-LLM_PROVIDER=openai
-OPENAI_BASE_URL=http://localhost:11434/v1
-OPENAI_API_KEY=ollama          # any non-empty string
-LLM_MODEL=qwen2.5:7b           # must support tool calling
+docker compose up -d        # recreates the container with the new values
+docker compose restart      # does NOT - it restarts the old container, old values and all
 ```
 
----
+One trap when switching provider: `LLM_MODEL` is not provider-specific. If it is set to a Gemini
+model and you switch `LLM_PROVIDER` to `groq`, that model name is sent to Groq and the call fails.
+Clear `LLM_MODEL` to fall back to the provider's default, or set a model that provider serves.
+
+A rebuild (`docker compose up --build`) is only needed when the code, the dependencies or anything
+under `knowledge-base/` changes.
+
+The image runs `npm run ingest` at build time, so the FAISS index and the embedding model are
+already inside it: the container is ready in under a second and needs no network for retrieval.
+Only the MCP tools and the chat model reach out. After changing anything under `knowledge-base/`
+- including a `npm run fetch` - rebuild with `docker compose up --build` to pick it up.
+
+It is a Debian image rather than Alpine, because FAISS and ONNX Runtime publish prebuilt binaries
+for glibc and none for musl. The build drops the ONNX binaries for other platforms and for GPUs,
+which is most of the image: the embedding model runs on CPU.
+
+### Configuration
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `LLM_PROVIDER` | `google` | One of `google`, `openai`, `anthropic`, `groq`. |
+| `LLM_MODEL` | per provider | Overrides the default below. Must support function calling. |
+| `GOOGLE_API_KEY` etc. | – | Only the key for the selected provider is needed. |
+| `DESTINATION` | `Singapore` | Shown in the UI and the prompt. |
+| `RETRIEVAL_TOP_K` | `6` | Passages given to the model per question. |
+| `RETRIEVAL_MIN_SCORE` | `0.38` | Cosine floor below which the corpus counts as not covering the question. |
+
+| Provider | Default model | Key |
+| --- | --- | --- |
+| `google` | `gemini-2.5-flash` | `GOOGLE_API_KEY` |
+| `openai` | `gpt-4o-mini` | `OPENAI_API_KEY` |
+| `anthropic` | `claude-sonnet-5` | `ANTHROPIC_API_KEY` |
+| `groq` | `llama-3.3-70b-versatile` | `GROQ_API_KEY` |
+
+The provider SDKs are imported lazily in `src/lib/model.ts`, so a deployment only loads the one it
+uses. Everything downstream drives a LangChain `BaseChatModel`, so switching provider is a
+configuration change and never a code change.
 
 ## Architecture
 
 ```
-                      ┌──────────────────────────────────────┐
-  browser  ──POST──▶  │  /api/chat  (Next.js route handler)  │
-       ◀──NDJSON────  │  streams status/retrieval/tool/token │
-                      └────────────────┬─────────────────────┘
-                                       │
-                              ┌────────▼─────────┐
-                              │   orchestrator   │  explicit agent loop
-                              └───┬────┬─────┬───┘
-              ┌───────────────────┘    │     └──────────────────┐
-              │                        │                        │
-     ┌────────▼────────┐      ┌────────▼────────┐      ┌────────▼────────┐
-     │ hybrid retrieval│      │   chat model    │      │  MCP client     │
-     │ cosine + BM25   │      │ LangChain       │      │ stdio, 2 servers│
-     │   ↓ RRF fusion  │      │ openai/anthropic│      │      ↓          │
-     │ JSON vector idx │      │ groq/google     │      │ weather currency│
-     └────────┬────────┘      └─────────────────┘      └────────┬────────┘
-              │                                                  │
-     data/index/singapore.index.json              Open-Meteo · Frankfurter
+Browser ──POST /api/chat──▶ agent.ts
+                              ├─▶ retriever.ts ─▶ FAISS index  (destination facts)
+                              ├─▶ mcp.ts ───────▶ weather / currency servers  (live data)
+                              └─▶ the chat model via LangChain
+                            ◀── newline-delimited JSON: progress steps, sources, answer tokens
 ```
 
-### Request lifecycle
+One turn runs in `src/lib/agent.ts`:
 
-1. **Session** — the turn is attached to a session; prior messages and pinned preferences load.
-2. **Retrieve** — the question is embedded and run through both rankers; results are fused by
-   reciprocal rank. If the closest chunk's cosine is below the coverage floor, the turn is marked
-   as a knowledge gap and the prompt forbids answering destination facts from model memory.
-3. **Assemble** — system policy prompt, prior turns, then a context block holding the retrieved
-   passages, the numbered source list and the carried preferences.
-4. **Loop** — the model is called with the MCP tool definitions bound. If it emits tool calls they
-   run *in parallel*, results are appended as tool messages, and the loop continues. The final
-   round drops the tools so the model is forced to answer rather than loop to the cap.
-5. **Stream** — every stage emits an NDJSON event: `status`, `retrieval`, `tool_call`,
-   `tool_result`, `token`, `done`, `error`. The UI renders retrieval and tool activity live.
-6. **Record** — the answer is appended to the session; provenance is returned with `done`.
+1. Embed the question and search the FAISS index. The citations are streamed to the browser
+   immediately, before the model has written anything.
+2. Ask the model with the retrieved passages, the conversation so far, and the MCP tools bound as
+   function declarations.
+3. If the model calls tools, run them in parallel, stream each result to the browser, feed them
+   back and ask again. Up to three rounds, after which the tools are unbound so the model has to
+   answer with what it has.
+4. Store the question and the answer against the session id for the next turn.
 
-Provenance is collected as the turn runs rather than reconstructed from callbacks afterwards, which
-is why the loop is written out instead of delegated to a prebuilt agent executor: knowing exactly
-which passages and which tool results fed an answer is the product here, not a debugging aid.
+The turn loop is written out rather than delegated to a prebuilt agent executor because the UI has
+to report exactly which passages and which tool results produced the answer.
 
----
+### Progress
+
+A turn can take several seconds, most of it spent waiting on the model or on a tool, so the browser
+is told what is happening as it happens. Each phase is a `step` event with a stable id, sent twice -
+once when it starts and once when it finishes:
+
+```
+✓ Found 5 sources in the knowledge base
+✓ Thinking
+✓ Called get_weather_forecast (location: Singapore, days: 3)
+✓ Called convert_currency (amount: 60000, from: INR, to: SGD)
+✓ Reading the tool results
+```
+
+While a step is running it carries a spinner and reads `Calling …`; when it lands the same line is
+replaced in place with `Called …` and a tick. Because the id is stable the browser replaces the line
+rather than appending a second one, so it keeps no state machine of its own. A tool that fails says
+so on its own line. The finished list stays under the answer as a record of what the answer was
+built from - which is also how the interface distinguishes live tool data from knowledge-base facts.
+
+### When something breaks
+
+A provider's raw error is noise to whoever is using the assistant, and it carries endpoint and
+request detail that does not belong on screen. So a failure mid-turn is logged in full on the server
+and reported to the browser as one sentence: **Agent is down. Please try again in a moment.**
+
+Setup problems are the exception. A missing API key, an unbuilt index or a model that cannot call
+tools all raise a `SetupError`, and those messages are shown as written, because they are addressed
+to whoever is running the app and say exactly what to fix:
+
+```
+GOOGLE_API_KEY is not set, but LLM_PROVIDER is "google". Add the key to .env.local and
+restart, or switch LLM_PROVIDER to a provider you have a key for.
+```
+
+Either way the activity log settles - no step is left spinning - and any sources already retrieved
+stay on screen.
+
+### Files
+
+```
+src/lib/
+  agent.ts            the turn: retrieve, call the model, run tools, stream
+  model.ts            chat model for the configured provider
+  retriever.ts        vector search, per-document capping, citation numbering
+  vector-store.ts     FAISS index: build, load, search
+  embeddings.ts       all-MiniLM-L6-v2 in-process through ONNX Runtime
+  knowledge-base.ts   markdown loading, front matter, chunking
+  mcp.ts              stdio client for the two tool servers
+  prompt.ts           system prompt and the per-question context block
+mcp-servers/          the two MCP tool servers
+scripts/fetch.ts      refreshes the wiki documents
+scripts/ingest.ts     builds the index
+knowledge-base/       15 markdown documents
+```
 
 ## Knowledge base
 
-15 documents from **four distinct resources**, all metadata-tagged with source title, URL,
-publisher, licence and retrieval date.
+15 markdown documents from three public sources, covering attractions and neighbourhoods,
+transport, culture and practical guidance, food, sample itineraries, and indoor/outdoor activities.
 
-| Resource | Documents | Licence | How obtained |
-| --- | --- | --- | --- |
-| [Wikivoyage Singapore](https://en.wikivoyage.org/wiki/Singapore) + 8 district guides | 9 | CC BY-SA 4.0 | `npm run kb:fetch` |
-| [Wikipedia](https://en.wikipedia.org/wiki/Transport_in_Singapore) — Transport, Tourism, Culture | 3 | CC BY-SA 4.0 | `npm run kb:fetch` |
-| [Visit Singapore](https://www.visitsingapore.com/) — travel essentials, itineraries, things to do | 3 | Summarised in our own words | Committed to `knowledge-base/curated/` |
+| Source | Documents |
+| --- | --- |
+| [Wikivoyage Singapore](https://en.wikivoyage.org/wiki/Singapore) | 9 - the main guide plus Chinatown, Little India, Bugis, Orchard, Riverside, Sentosa, East Coast, North and West |
+| Wikipedia - [Tourism](https://en.wikipedia.org/wiki/Tourism_in_Singapore), [Transport](https://en.wikipedia.org/wiki/Transport_in_Singapore), [Culture](https://en.wikipedia.org/wiki/Culture_of_Singapore) | 3 |
+| [Visit Singapore](https://www.visitsingapore.com/) - essentials, itineraries, things to do | 3 |
 
-Coverage: major attractions and neighbourhoods, local transport, cultural and practical guidance,
-food and local experiences, sample itineraries, and indoor/outdoor activity suggestions — the six
-areas the brief asks for.
-
-**On reuse terms.** Wikivoyage and Wikipedia publish under CC BY-SA 4.0, which permits
-redistribution with attribution, so their extracted text is committed here and every citation shows
-the source title, publisher and link. Visit Singapore's pages are not openly licensed, so nothing
-from them is reproduced: those three documents are factual summaries written for this project, with
-the source URL retained as metadata. `npm run kb:fetch` never touches `knowledge-base/curated/`.
-
-Documents are plain markdown with a front-matter block:
+Every document starts with a front matter block naming its title, URL and publisher. That block is
+the citation: it travels with each chunk through indexing and retrieval, so an answer can always
+name and link its source.
 
 ```markdown
 ---
 id: wikivoyage-singapore-chinatown
-title: "Wikivoyage: Singapore — Chinatown"
+title: "Wikivoyage: Singapore - Chinatown"
 url: https://en.wikivoyage.org/wiki/Singapore/Chinatown
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, culture, food, temples, shopping]
+retrievedAt: 2026-09-16
 ---
 ```
 
-Adding a source is: drop a markdown file with that header into `knowledge-base/`, re-run
-`npm run kb:ingest`. Nothing else needs to change.
+### Keeping it current
 
----
+```bash
+npm run fetch && npm run ingest
+```
 
-## RAG workflow
+`npm run fetch` re-downloads the twelve Wikivoyage and Wikipedia pages and rewrites them under
+`knowledge-base/singapore/`. Both sites expose a plain-text extract of a page through the same
+MediaWiki endpoint, so it is one request per page - no HTML scraping, and no parser to keep in step
+with a site redesign. Navigation sections (references, see also, external links and the like) are
+dropped, because left in they win retrieval slots on keyword overlap and answer nothing.
 
-**1. Load.** `kb:fetch` pulls MediaWiki `extracts` (plain text with `== heading ==` markers, far
-more reliable to convert than rendered HTML) and rewrites them as markdown, dropping navigation
-sections — "See also", "References", "External links" — that would otherwise win retrieval slots on
-keyword overlap while containing no answer.
+MediaWiki rate-limits bursts, so the script serialises its requests and backs off on a 429. If a
+page still fails, it says which one and leaves the copy already on disk alone, so a partial refresh
+never empties the corpus. The three hand-written documents under `knowledge-base/curated/` are never
+touched.
 
-**2. Chunk.** Heading-aware splitting: markdown is cut on ATX headings, and each chunk carries its
-full heading path (`Sentosa > See > S.E.A. Aquarium`). Paragraphs are packed greedily to ~320
-estimated tokens, capped at 480, with a short overlap for continuity. Oversized paragraphs split on
-sentence boundaries. Chunks under 40 tokens merge into their neighbour; anything still under 20
-tokens is dropped as a stub — the corpus is full of one-line fragments like a bare
-`visitsingapore.com` under a "Visitor information" heading, which carry no answer but score well
-lexically because their heading is short and topical.
+Re-run `npm run ingest` afterwards - the index is built from whatever is on disk at that moment.
 
-**3. Embed.** Each chunk is embedded with its heading path prefixed, so a mid-document paragraph
-about opening hours knows it belongs to a particular attraction. Batched at 64.
+### RAG workflow
 
-**4. Store.** A single JSON file (`data/index/singapore.index.json`, ~4.4 MB) holding documents,
-chunks and vectors. Loaded once per process, vectors L2-normalised at load so search is a plain dot
-product.
+Documents are split on markdown headings, then the paragraphs of each section are packed to about
+1,200 characters. Splitting on headings rather than a fixed window means a chunk is a topic, and it
+carries its heading path - that path is prefixed to the text before embedding, which gives a
+mid-document paragraph the context it would otherwise lack.
 
-**5. Retrieve.** Hybrid, fused by **reciprocal rank fusion** (k=60):
+Chunks are embedded with `all-MiniLM-L6-v2` running in-process through ONNX Runtime. It needs no API
+key and no quota, so indexing and retrieval work offline and the index stays valid regardless of
+which chat model is configured. The 384-dimension vectors are stored in a FAISS `IndexFlatIP`;
+because the vectors are L2-normalised, inner product is cosine similarity.
 
-- *Dense* — cosine over the full index. Exhaustive rather than approximate: 505 chunks × 384
-  dimensions is a sub-millisecond scan, and the result is exact.
-- *Lexical* — BM25 (k1=1.2, b=0.75) with heading terms weighted double. Dense retrieval alone is
-  weak on the proper nouns travellers actually type — "Haw Par Villa", "EZ-Link", "Jewel Changi" —
-  and exact term matching recovers them.
+At query time the question is embedded and the index searched. Two guards shape the result:
 
-RRF is used instead of a weighted score blend because the two rankers produce scores on
-incomparable scales (bounded cosine vs. unbounded BM25), and a blend weight tuned per corpus is
-exactly the kind of hidden constant that rots.
+- **Coverage.** If the closest chunk scores below `RETRIEVAL_MIN_SCORE`, the corpus is treated as
+  not covering the question. The prompt then forbids answering destination facts from memory.
+- **Per-document cap.** At most three chunks from any one document. The Wikivoyage Singapore page
+  is roughly a third of the corpus and would otherwise take every slot, leaving the answer with a
+  single source to cite.
 
-Results are then capped per source document, because a single long article (the Wikivoyage
-Singapore page is a third of the corpus) otherwise owns every slot, leaving the reader with one
-link instead of four.
-
-**6. Ground.** Retrieved chunks are rendered into a `KNOWLEDGE BASE` block with `[S1]`, `[S2]`
-markers; chunks from the same document collapse onto one marker, so answers cite documents rather
-than offsets.
-
-**7. Cite.** Markers resolve to title, publisher, section path and URL in the sidebar, alongside
-the relevance score.
-
-### Knowing when the corpus does not cover a question
-
-Coverage is judged on the **raw cosine of the closest chunk**, never on the fused score. RRF is
-ordinal — whatever ranks first scores 1.0 however irrelevant it is — so a fused-score threshold
-would pass every query ever asked. Measured on this corpus with `all-MiniLM-L6-v2`:
-
-| Query type | Best cosine |
-| --- | --- |
-| Genuine destination questions | 0.43 – 0.75 |
-| Off-topic ("visa fee for Reykjavik", "offside rule") | 0.08 – 0.35 |
-| Travel-shaped but wrong city ("top attractions in Buenos Aires") | 0.35 |
-
-`RETRIEVAL_MIN_SIMILARITY` defaults to **0.38**, which separates them cleanly. Below it the prompt
-switches to a gap instruction: state that the guides do not cover it, offer the closest topic that
-is covered, and do not answer destination facts from memory. Tools remain available, so
-*"convert 200 SGD to INR"* is still answered — from the tool, without claiming corpus grounding.
-
-The threshold is embedding-model dependent. After switching models, re-measure with
-`npm run kb:search`, which prints the best cosine for any query.
-
----
+Citations are numbered per document rather than per chunk, so two passages from one guide are one
+source to the reader and one link to click.
 
 ## MCP tools
 
-Two MCP servers, each a standalone process speaking JSON-RPC over stdio, built with
-`@modelcontextprotocol/sdk`. Both upstreams are keyless, so the tool half of the application works
-from a fresh clone.
+Two stdio MCP servers, spawned once per process and reused. Both use free APIs that need no key.
 
-### `travel-weather` — Open-Meteo
-
-| Tool | Arguments | Returns |
+| Server | Tool | Backed by |
 | --- | --- | --- |
-| `get_current_weather` | `location` | Temperature, feels-like, humidity, wind, precipitation |
-| `get_weather_forecast` | `location`, `days` (1–7) | Per day: conditions, high/low, rainfall, rain probability, sunrise/sunset, and an outdoor-suitability verdict |
+| `weather` | `get_current_weather` | Open-Meteo |
+| `weather` | `get_weather_forecast` - up to 7 days, with an indoor/outdoor call per day | Open-Meteo |
+| `currency` | `convert_currency` | Frankfurter (European Central Bank reference rates) |
 
-Geocoding and forecast are separate upstream calls; geocode results are memoised. WMO weather codes
-are mapped to plain descriptions, and each forecast day carries an explicit `outlook`
-("wet — plan indoor options", "dry — good for outdoor activities") so the model has a defensible
-basis for swapping an outdoor block rather than inventing one.
+The model picks the tool; the servers are not called for anything the knowledge base already covers.
+The forecast tool returns a plain indoor-or-outdoor verdict per day rather than raw numbers, because
+that is the judgement the itinerary actually needs.
 
-### `travel-currency` — Frankfurter (ECB reference rates)
+Failures are contained. A server that will not start is recorded and skipped, and the prompt tells
+the model to say what it cannot check. A tool that errors returns the error text as its result, so
+the model explains the gap instead of inventing a number. MCP servers publish JSON Schema derived
+from Zod, and Gemini rejects any keyword outside its own subset, so `mcp.ts` narrows every schema to
+that subset before binding - one code path rather than a branch per provider, and it costs the
+other three nothing.
 
-| Tool | Arguments | Returns |
-| --- | --- | --- |
-| `convert_currency` | `amount`, `from`, `to` | Converted amount, unit rate, rate publication date |
-| `list_supported_currencies` | — | 30 ISO 4217 codes with full names |
+## Prompt strategy
 
-The rate's publication date is always returned. ECB rates are published once per working day, so a
-weekend conversion is Friday's rate — stated rather than hidden, because a traveller comparing it
-against an airport board will otherwise think the tool is broken.
+The system prompt in `src/lib/prompt.ts` is written as a policy, not a persona. Its core is that the
+assistant has exactly three sources and must keep them visibly apart:
 
-### Client integration
+1. **Knowledge base** - the retrieved passages, labelled `[S1]`, `[S2]`. The only source for
+   destination facts, cited inline.
+2. **Tools** - the only source for anything that changes daily. The answer attributes these in the
+   text: "the forecast shows", "at today's published rate".
+3. **The model's own planning** - ordering, pacing, matching an activity to the weather. Useful, and
+   the assistant should do it, but phrased as a suggestion so a reader can tell it from the first two.
 
-`src/lib/mcp/client.ts` spawns each server, performs the MCP handshake, calls `tools/list`, and
-adapts the returned JSON Schemas into LangChain tool definitions bound to the model. Specifically:
+Retrieved passages are sent as a separate message ahead of the question, so they cannot be mistaken
+for something the traveller typed, and so they do not accumulate in the conversation history - only
+the plain question and answer are kept, trimmed to the last ten messages. That is what carries a
+stated budget, party or set of dates across turns without asking again.
 
-- **Connection reuse** — servers are started once per process, not per request; a global handle
-  survives Next.js hot reloads so editing a file does not leak child processes.
-- **Degradation** — a server that fails to start is recorded and skipped. The remaining tools still
-  work, and the system prompt is told which server is missing so the model can say what it could
-  not check.
-- **Failure as data** — a thrown upstream error, a protocol error or a timeout all come back as a
-  *failed* `ToolInvocation`, which is handed to the model as a tool result. The model explains the
-  gap instead of substituting a plausible-looking number.
-- **Name collisions** — if two servers advertise the same tool name, the later one is prefixed with
-  its server id.
-- **Parallel execution** — tool calls issued in one round run concurrently, so a three-day forecast
-  plus a currency conversion is one wait, not two.
+The remaining rules each exist to prevent a specific failure: never attach a citation marker to a
+claim the passage does not support; never state a temperature or a rate that no tool returned; say
+plainly when the guides do not cover something rather than filling the gap from memory; resolve
+relative dates before calling a tool.
 
-### Using other MCP servers
+## Sample questions
 
-Copy `mcp.config.example.json` to `mcp.config.json`. It uses the same `mcpServers` shape as Claude
-Desktop and other MCP hosts, so any third-party server can be dropped in and its tools are offered
-to the model with no application change.
+Knowledge base only:
 
-### No build step
+- What are the must-visit attractions in Singapore?
+- Which neighbourhoods are suitable for cultural experiences?
+- How can a tourist travel around Singapore?
+- What indoor attractions can I visit?
 
-Both servers are plain TypeScript executed directly by `node`, using Node 24's native type
-stripping. This constrains them to erasable syntax — no enums, no parameter properties — in
-exchange for there being nothing between editing a tool and calling it.
+MCP only:
 
----
+- What is the weather in Singapore?
+- What is the forecast for the next three days?
+- Convert INR 50,000 to SGD.
 
-## Prompt and context strategy
+Both:
 
-Full rationale in [docs/PROMPT_STRATEGY.md](docs/PROMPT_STRATEGY.md); the short version:
+- Create a three-day Singapore itinerary for next week and adjust it to the weather forecast.
+- I have a budget of INR 60,000. Convert it to SGD and suggest a three-day itinerary.
+- Suggest outdoor attractions and replace them with indoor options if rain is expected.
 
-The system prompt is written as a **policy document, not a persona**. Its central move is naming
-three sources of truth and forbidding them from blurring:
+Multi-turn - the second question relies on the first:
 
-1. **Knowledge base** — the only permitted source for destination facts, cited as `[S1]`.
-2. **Live tools** — the only permitted source for weather and exchange rates. The model may not
-   state a temperature or a rate that did not come from a tool result in that conversation.
-3. **Its own planning** — sequencing, pacing, pairing an activity to the weather. Genuinely useful,
-   and explicitly a *suggestion*, phrased so a reader can tell it apart from 1 and 2.
-
-Tool policy is stated as a rule with its converse, because the brief requires both directions:
-call a tool for live information; answer what-to-see, where-to-stay, how-to-get-around and
-what-to-eat from the corpus and **never** from a tool.
-
-Honesty rules are concrete rather than exhortative: do not attach a citation to a statement the
-cited passage does not support; prefer "the guides do not say" to a confident guess; when a tool
-fails, name the part of the answer that could not be verified and answer the rest.
-
-**Context assembly.** Retrieved passages go in a separate human message ahead of the question, so
-they cannot be mistaken for something the user typed, and so the block can be dropped once the turn
-ends rather than accumulating.
-
-**Preferences** are extracted with rules, not with an extra LLM call. Budget, party, trip length,
-dietary needs, mobility, pace and interests are stated in a small number of predictable phrasings;
-a rule pass costs nothing, is deterministic, and cannot hallucinate a constraint the traveller
-never mentioned. Later turns supersede earlier ones; interests accumulate. The trade-off is recall
-on unusual phrasing — and since the transcript is still in context, a missed rule degrades to "not
-pinned", not "forgotten".
-
----
-
-## Configuration
-
-All variables live in `.env.local`; see [`.env.example`](.env.example) for the annotated set.
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `LLM_PROVIDER` | `openai` | `openai` \| `anthropic` \| `groq` \| `google` |
-| `LLM_MODEL` | per provider | Must support tool calling |
-| `OPENAI_BASE_URL` | — | Point the OpenAI-compatible path at Ollama, LM Studio, vLLM, OpenRouter, Azure |
-| `EMBEDDING_PROVIDER` | inferred | `openai` \| `google` \| `local` |
-| `RETRIEVAL_TOP_K` | `6` | Chunks passed to the model |
-| `RETRIEVAL_MIN_SIMILARITY` | `0.38` | Cosine floor for corpus coverage |
-| `MAX_TOOL_ITERATIONS` | `4` | Model/tool round trips before an answer is forced |
-| `MCP_TOOL_TIMEOUT_MS` | `20000` | Per tool call |
-| `DESTINATION` | `Singapore` | Used in prompts and UI copy |
-
-Environment parsing is schema-validated at startup, so a typo fails immediately with the offending
-key named rather than surfacing as `undefined` three layers down.
-
-**Changing embedding provider requires re-running `npm run kb:ingest`** — the index and the query
-must be embedded by the same model. The index records what built it, and the loader refuses a
-dimension mismatch with an actionable message rather than returning nonsense scores.
-
----
-
-## Commands
-
-| Command | What it does | Needs a key |
-| --- | --- | --- |
-| `npm run dev` | Development server | LLM only |
-| `npm run build` / `npm start` | Production build and serve | LLM only |
-| `npm run kb:fetch` | Re-download source documents | No |
-| `npm run kb:ingest` | Chunk + embed into `data/index` | Embeddings |
-| `npm run kb:search -- "…"` | Retrieval probe with per-ranker scores | Embeddings |
-| `npm run kb:stats` | Index composition and chunk-size distribution | No |
-| `npm run mcp:check` | Connect both servers, call every tool, assert failures | No |
-| `npm run ask` | Terminal chat client | LLM |
-| `npm test` | Unit tests (30) | No |
-| `npm run typecheck` / `npm run lint` | Static checks | No |
-
-With `EMBEDDING_PROVIDER=local`, every "needs a key" cell above reading *Embeddings* becomes *No*.
-
----
-
-## Project layout
-
-```
-ai-travel-assistant/
-├── knowledge-base/
-│   ├── singapore/            fetched documents (Wikivoyage, Wikipedia)
-│   └── curated/              hand-written summaries with source attribution
-├── mcp-servers/src/
-│   ├── weather.ts            MCP server — Open-Meteo
-│   ├── currency.ts           MCP server — Frankfurter
-│   └── http.ts               shared fetch with timeout + bounded retry
-├── scripts/
-│   ├── fetch-sources.ts      rebuild the corpus from MediaWiki
-│   ├── ingest.ts             chunk + embed + write the index
-│   ├── search.ts             retrieval probe
-│   ├── index-stats.ts        index composition report
-│   ├── mcp-check.ts          MCP end-to-end probe
-│   └── ask.ts                terminal client
-├── src/
-│   ├── app/
-│   │   ├── api/chat/         NDJSON streaming endpoint
-│   │   ├── api/health/       readiness probe
-│   │   └── page.tsx
-│   ├── components/           chat UI, provenance panel, status bar
-│   └── lib/
-│       ├── agent/            prompts + orchestration loop
-│       ├── config/           schema-validated env, paths
-│       ├── embeddings/       provider registry + local ONNX embeddings
-│       ├── llm/              provider registry
-│       ├── mcp/              stdio client, server registry
-│       ├── rag/              chunker, vector store, BM25, retriever
-│       └── session/          conversation store, preference extraction
-├── tests/                    chunker, retrieval, preference tests
-└── docs/                     architecture, prompt strategy, samples, demo
-```
-
----
-
-## Design decisions
-
-**A purpose-built vector store instead of FAISS or Chroma.** `faiss-node` needs a native build step
-and Chroma needs a separate server process, both of which are real friction for a reviewer cloning
-this repository. At 505 chunks an exhaustive cosine scan is *exact* and takes under a millisecond,
-so an approximate index would trade correctness for a speed-up that is not needed. The store's
-interface is deliberately the small one an ANN backend would also satisfy, so swapping in Chroma or
-FAISS later is a change to one file.
-
-**Hybrid retrieval rather than dense-only.** Travel questions are dense with proper nouns that an
-embedding model has not specialised on. BM25 recovers exactly those, and RRF fuses the rankings
-without a tuned blend weight.
-
-**An explicit agent loop rather than a prebuilt executor.** The assignment requires the answer to
-identify the sources and tool results used. Collecting that as the turn runs is strictly better than
-reconstructing it from callbacks, and the loop is ~60 readable lines.
-
-**Retrieval before the model, not as a tool.** Guarantees every destination answer is grounded, and
-makes the gap check possible: the assistant knows the corpus does not cover something *before* the
-model starts writing. The cost is one embedding call on turns that turn out to be pure tool
-questions. Exposing retrieval as a tool would be the alternative — it would let the model re-query
-after seeing tool results, at the cost of ungrounded answers whenever it chose not to call it.
-
-**Rule-based preference extraction rather than an LLM pass.** Deterministic, free, and cannot
-invent a constraint the traveller never stated.
-
-**NDJSON rather than SSE.** The client is a plain `fetch` reader; NDJSON needs no framing ceremony
-and stays readable under `curl`, which is how this endpoint actually gets debugged.
-
----
-
-## Limitations
-
-- **Single-node session store.** Conversations live in process memory with a 2-hour TTL. The
-  interface is narrow enough that swapping in Redis is a change to `src/lib/session/store.ts` alone.
-- **One retrieval per turn.** The model cannot re-query the corpus after seeing tool results.
-- **Rebuild on corpus change.** The index is read once per process; changing documents needs
-  `kb:ingest` and a restart.
-- **Rate freshness.** ECB rates are daily, not live market rates. Fine for trip budgeting, not for
-  currency trading — and the response always says which day's rate it used.
-- **Preference recall.** Rules cover common phrasings, not all of them.
-- **Weather beyond 7 days.** Open-Meteo's free forecast horizon, so "adjust my trip three weeks
-  out" gets an explicit "I can't check that far ahead" rather than a guess.
-- **Singapore only.** The pipeline is destination-agnostic — swap the corpus, set `DESTINATION`,
-  re-ingest — but only Singapore is indexed here.
-
----
-
-## Further reading
-
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — module map and data flow
-- [docs/PROMPT_STRATEGY.md](docs/PROMPT_STRATEGY.md) — every prompt rule and the failure it prevents
-- [docs/SAMPLE_QUESTIONS.md](docs/SAMPLE_QUESTIONS.md) — worked questions and expected behaviour
-- [docs/DEMO.md](docs/DEMO.md) — a demonstration script covering RAG, MCP, combined and multi-turn
-
-## Licence
-
-Application code: MIT (see [LICENSE](LICENSE)).
-Knowledge-base content retains its original licences — see
-[knowledge-base/README.md](knowledge-base/README.md).
+- "I'm travelling with two young children and have four days." -> "Now plan the four days around the
+  forecast."

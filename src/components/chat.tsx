@@ -1,268 +1,259 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Composer } from "@/components/composer";
-import { MessageView } from "@/components/message-view";
-import { ProvenancePanel } from "@/components/provenance-panel";
-import { StatusBar } from "@/components/status-bar";
-import { askAssistant } from "@/lib/client/stream";
-import type { Citation, ToolInvocation } from "@/lib/types";
+import { useEffect, useRef, useState } from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import type { Citation, StreamEvent } from "@/lib/types";
 
-export interface UiMessage {
+/** One line of the activity log: what the assistant is doing, or just did. */
+interface Step {
   id: string;
-  role: "user" | "assistant";
-  content: string;
-  status: "pending" | "streaming" | "complete" | "failed";
-  stage?: string;
-  citations: Citation[];
-  toolInvocations: ToolInvocation[];
-  /** Tool calls the model has issued but that have not returned yet. */
-  pendingTools: Array<{ id: string; name: string; args: Record<string, unknown> }>;
-  retrievalGap: boolean;
-  combined: boolean;
-  model?: string;
-  provider?: string;
+  text: string;
+  done: boolean;
 }
 
-const SUGGESTIONS = [
+interface Message {
+  id: number;
+  role: "you" | "assistant";
+  text: string;
+  steps: Step[];
+  citations: Citation[];
+  gap: boolean;
+  failed?: boolean;
+}
+
+const EXAMPLES = [
   "What are the must-visit attractions in Singapore?",
-  "Create a three-day Singapore itinerary for next week and adjust it to the weather forecast.",
-  "I have a budget of INR 60,000 — convert it to SGD and suggest a three-day itinerary.",
+  "Plan a three-day trip for next week and adjust it to the weather forecast.",
+  "My budget is INR 60,000. What is that in SGD, and what can I do with it?",
   "Which neighbourhoods are best for cultural experiences?",
-  "What indoor attractions can I visit if it rains?",
-  "Suggest activities for a family with young children.",
+  "It might rain tomorrow. What indoor attractions can I visit?",
 ];
 
-export function Chat({ destination }: { destination: string }) {
-  const [messages, setMessages] = useState<UiMessage[]>([]);
-  const [busy, setBusy] = useState(false);
-  const sessionId = useMemo(() => crypto.randomUUID(), []);
-  const abortRef = useRef<AbortController | null>(null);
-  const transcriptRef = useRef<HTMLDivElement>(null);
-  const pinnedToBottom = useRef(true);
+/** Replaces a step in place when it is already on screen, so a line can go from
+ *  "Calling …" to "Called …" without the list reordering. */
+function upsert(steps: Step[], next: Step): Step[] {
+  const at = steps.findIndex((step) => step.id === next.id);
+  if (at === -1) return [...steps, next];
+  const copy = steps.slice();
+  copy[at] = next;
+  return copy;
+}
 
-  // Follow the stream only while the reader is already at the bottom, so
-  // scrolling up to re-read an earlier answer is not fought by every token.
+const settle = (steps: Step[]) => steps.map((step) => ({ ...step, done: true }));
+
+export default function Chat({ destination }: { destination: string }) {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [question, setQuestion] = useState("");
+  const [busy, setBusy] = useState(false);
+  // Created on the first question rather than during render: render has to be
+  // pure, and a value derived there would also be recomputed on every pass.
+  const sessionId = useRef("");
+  const bottom = useRef<HTMLDivElement>(null);
+  const nextId = useRef(0);
+
   useEffect(() => {
-    const element = transcriptRef.current;
-    if (element && pinnedToBottom.current) {
-      element.scrollTop = element.scrollHeight;
-    }
+    // Not on mount: with nothing asked yet there is nothing to follow, and
+    // scrolling to the anchor would push the heading off the top of the page.
+    if (messages.length > 0) bottom.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleScroll = useCallback(() => {
-    const element = transcriptRef.current;
-    if (!element) return;
-    const distanceFromBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
-    pinnedToBottom.current = distanceFromBottom < 80;
-  }, []);
+  function updateAnswer(change: (message: Message) => Message) {
+    setMessages((all) => all.map((m, i) => (i === all.length - 1 ? change(m) : m)));
+  }
 
-  const updateLast = useCallback((mutate: (message: UiMessage) => UiMessage) => {
-    setMessages((current) => {
-      const last = current.at(-1);
-      if (!last || last.role !== "assistant") return current;
-      return [...current.slice(0, -1), mutate(last)];
-    });
-  }, []);
+  async function ask(text: string) {
+    const trimmed = text.trim();
+    if (!trimmed || busy) return;
 
-  const send = useCallback(
-    async (question: string) => {
-      const trimmed = question.trim();
-      if (!trimmed || busy) return;
+    sessionId.current ||= crypto.randomUUID();
+    setBusy(true);
+    setQuestion("");
+    setMessages((all) => [
+      ...all,
+      { id: nextId.current++, role: "you", text: trimmed, steps: [], citations: [], gap: false },
+      {
+        id: nextId.current++,
+        role: "assistant",
+        text: "",
+        steps: [{ id: "start", text: "Working", done: false }],
+        citations: [],
+        gap: false,
+      },
+    ]);
 
-      abortRef.current?.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ question: trimmed, sessionId: sessionId.current }),
+      });
 
-      pinnedToBottom.current = true;
-      setBusy(true);
-      setMessages((current) => [
-        ...current,
-        {
-          id: crypto.randomUUID(),
-          role: "user",
-          content: trimmed,
-          status: "complete",
-          citations: [],
-          toolInvocations: [],
-          pendingTools: [],
-          retrievalGap: false,
-          combined: false,
-        },
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          content: "",
-          status: "pending",
-          stage: "Starting",
-          citations: [],
-          toolInvocations: [],
-          pendingTools: [],
-          retrievalGap: false,
-          combined: false,
-        },
-      ]);
+      if (!response.ok || !response.body) {
+        throw new Error(`The server returned HTTP ${response.status}.`);
+      }
 
-      try {
-        for await (const event of askAssistant({
-          question: trimmed,
-          sessionId,
-          signal: controller.signal,
-        })) {
-          switch (event.type) {
-            case "status":
-              updateLast((message) => ({ ...message, stage: event.detail ?? event.stage }));
-              break;
+      // The response is newline-delimited JSON. Chunk boundaries fall wherever
+      // the network puts them, so a partial line waits for its newline.
+      const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+      let buffer = "";
 
-            case "retrieval":
-              updateLast((message) => ({
-                ...message,
-                citations: event.citations,
-                retrievalGap: event.gap,
-              }));
-              break;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += value;
 
-            case "tool_call":
-              updateLast((message) => ({
-                ...message,
-                pendingTools: [...message.pendingTools, event.invocation],
-              }));
-              break;
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? "";
 
-            case "tool_result":
-              updateLast((message) => ({
-                ...message,
-                pendingTools: message.pendingTools.filter((tool) => tool.id !== event.invocation.id),
-                toolInvocations: [...message.toolInvocations, event.invocation],
-              }));
-              break;
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          const event = JSON.parse(line) as StreamEvent;
 
-            case "token":
-              updateLast((message) => ({
-                ...message,
-                status: "streaming",
-                stage: undefined,
-                content: message.content + event.value,
-              }));
-              break;
-
-            case "done":
-              updateLast((message) => ({
-                ...message,
-                status: "complete",
-                stage: undefined,
-                pendingTools: [],
-                citations: event.provenance.citations,
-                toolInvocations: event.provenance.toolInvocations,
-                retrievalGap: event.provenance.retrievalGap,
-                combined: event.provenance.combined,
-                model: event.model,
-                provider: event.provider,
-              }));
-              break;
-
-            case "error":
-              updateLast((message) => ({
-                ...message,
-                status: "failed",
-                stage: undefined,
-                pendingTools: [],
-                content: message.content
-                  ? `${message.content}\n\n**The turn stopped early:** ${event.message}`
-                  : event.message,
-              }));
-              break;
+          if (event.type === "step") {
+            updateAnswer((m) => ({
+              ...m,
+              // The placeholder is replaced by the first real step.
+              steps: upsert(
+                m.steps.filter((s) => s.id !== "start"),
+                { id: event.id, text: event.text, done: event.done },
+              ),
+            }));
+          }
+          if (event.type === "sources") {
+            updateAnswer((m) => ({ ...m, citations: event.citations, gap: event.gap }));
+          }
+          if (event.type === "reset") updateAnswer((m) => ({ ...m, text: "" }));
+          if (event.type === "token") {
+            updateAnswer((m) => ({ ...m, text: m.text + event.text }));
+          }
+          if (event.type === "done") {
+            updateAnswer((m) => ({ ...m, steps: settle(m.steps) }));
+          }
+          if (event.type === "error") {
+            updateAnswer((m) => ({
+              ...m,
+              steps: settle(m.steps),
+              failed: true,
+              text: event.message,
+            }));
           }
         }
-      } catch (error) {
-        if (controller.signal.aborted) return;
-        updateLast((message) => ({
-          ...message,
-          status: "failed",
-          stage: undefined,
-          pendingTools: [],
-          content: error instanceof Error ? error.message : "The request failed.",
-        }));
-      } finally {
-        setBusy(false);
-        abortRef.current = null;
       }
-    },
-    [busy, sessionId, updateLast],
-  );
-
-  const stop = useCallback(() => {
-    abortRef.current?.abort();
-    updateLast((message) => ({
-      ...message,
-      status: message.content ? "complete" : "failed",
-      stage: undefined,
-      pendingTools: [],
-      content: message.content || "Stopped before the assistant replied.",
-    }));
-    setBusy(false);
-  }, [updateLast]);
-
-  const lastAssistant = [...messages].reverse().find((message) => message.role === "assistant");
+    } catch (error) {
+      // The server is unreachable or the stream broke. Same treatment as a
+      // failure inside the turn: the detail goes to the console, the reader
+      // gets one sentence.
+      console.error("Chat request failed:", error);
+      updateAnswer((m) => ({
+        ...m,
+        steps: settle(m.steps),
+        failed: true,
+        text: "Agent is down. Please try again in a moment.",
+      }));
+    } finally {
+      setBusy(false);
+    }
+  }
 
   return (
-    <>
-      <StatusBar />
-      <div className="workspace">
-        <section className="conversation" aria-label="Conversation">
-          <div
-            className="transcript"
-            ref={transcriptRef}
-            onScroll={handleScroll}
-            aria-live="polite"
-            aria-busy={busy}
-          >
-            {messages.length === 0 ? (
-              <EmptyState destination={destination} onPick={send} disabled={busy} />
-            ) : (
-              messages.map((message) => <MessageView key={message.id} message={message} />)
-            )}
-          </div>
-          <Composer onSend={send} onStop={stop} busy={busy} destination={destination} />
-        </section>
-        <aside className="sidebar" aria-label="Answer provenance">
-          <ProvenancePanel message={lastAssistant} />
-        </aside>
-      </div>
-    </>
+    <div className="chat">
+      {messages.length === 0 ? (
+        <div className="intro">
+          <p>Ask about {destination}, or start with one of these:</p>
+          <ul>
+            {EXAMPLES.map((example) => (
+              <li key={example}>
+                <button type="button" onClick={() => ask(example)}>
+                  {example}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        messages.map((message) => <Entry key={message.id} message={message} />)
+      )}
+
+      <div ref={bottom} />
+
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          ask(question);
+        }}
+      >
+        <textarea
+          value={question}
+          rows={2}
+          placeholder={`Ask about ${destination}`}
+          disabled={busy}
+          onChange={(event) => setQuestion(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              ask(question);
+            }
+          }}
+        />
+        <button type="submit" disabled={busy || !question.trim()}>
+          {busy ? "Working…" : "Send"}
+        </button>
+      </form>
+    </div>
   );
 }
 
-function EmptyState({
-  destination,
-  onPick,
-  disabled,
-}: {
-  destination: string;
-  onPick: (question: string) => void;
-  disabled: boolean;
-}) {
-  return (
-    <div className="empty-state">
-      <h2>Ask about {destination}</h2>
-      <p>
-        Destination questions are answered from the indexed guide corpus with a citation for every
-        claim. Weather and currency questions go out to MCP tools. Ask something that needs both and
-        the answer will use both, and say which part came from where.
-      </p>
-      <div className="suggestions">
-        {SUGGESTIONS.map((suggestion) => (
-          <button
-            key={suggestion}
-            type="button"
-            className="suggestion"
-            onClick={() => onPick(suggestion)}
-            disabled={disabled}
-          >
-            {suggestion}
-          </button>
-        ))}
+function Entry({ message }: { message: Message }) {
+  if (message.role === "you") {
+    return (
+      <div className="entry you">
+        <span className="who">You</span>
+        <p>{message.text}</p>
       </div>
+    );
+  }
+
+  return (
+    <div className="entry">
+      <span className="who">Assistant</span>
+
+      {message.steps.length > 0 && (
+        <ul className="steps" aria-live="polite">
+          {message.steps.map((step) => (
+            <li key={step.id} className={step.done ? "done" : ""}>
+              {step.done ? <span className="tick">✓</span> : <span className="spinner" />}
+              {step.text}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {message.text && (
+        <div className={message.failed ? "answer failed" : "answer"}>
+          <Markdown remarkPlugins={[remarkGfm]}>{message.text}</Markdown>
+        </div>
+      )}
+
+      {message.gap && (
+        <p className="note">No indexed guide covered this question.</p>
+      )}
+
+      {message.citations.length > 0 && (
+        <div className="sources">
+          <span className="who">Sources</span>
+          <ol>
+            {message.citations.map((citation) => (
+              <li key={citation.marker}>
+                <a href={citation.url} target="_blank" rel="noreferrer">
+                  {citation.title}
+                </a>{" "}
+                <span>{citation.publisher}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
     </div>
   );
 }

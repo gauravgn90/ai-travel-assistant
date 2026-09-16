@@ -1,13 +1,12 @@
 ---
 id: wikivoyage-singapore-bugis
-title: "Wikivoyage: Singapore — Bugis and Kampong Glam"
+title: "Wikivoyage: Singapore - Bugis and Kampong Glam"
 url: https://en.wikivoyage.org/wiki/Singapore/Bugis
 publisher: Wikivoyage
-license: CC BY-SA 4.0
-retrievedAt: 2026-09-12
-topics: [neighbourhood, culture, food, shopping, mosques]
+retrievedAt: 2026-09-16
 ---
-# Wikivoyage: Singapore — Bugis and Kampong Glam
+
+# Wikivoyage: Singapore - Bugis and Kampong Glam
 
 Bugis and Kampong Glam are districts of Singapore, just to the east of the central business district (CBD).
 
@@ -47,7 +46,7 @@ Bugis in particular is all about shopping these days!
 3 Bugis Village. Right across Victoria St, Bugis Street no longer has bars and transvestites, but it does have a bazaar that sells all sorts of vaguely touristy knick-knacks as well as mass-market street wear. This is the cheapest place in Singapore to buy T-shirts for family back home, although the quality of those $5 shirts is pretty much what you'd expect and you can get similar T-shirts for less than half this price in Malaysia. If you haven't sampled tropical fruits yet, take a look at the fruit stalls at the other end. (updated Sep 2017)
 If you continue walking straight through Bugis Street, you'll reach the Albert Street and Waterloo Street pedestrian mall. Browse through shops offering Buddhist paraphernalia and take a peek at the two temples on Waterloo St. Keep going straight to reach electronics haven Sim Lim Square and beyond it Little India.
 
-4 Sin Chew Chinese Cultural Products Supermart, 192 Waterloo St. True to the name, this store packs in vast quantities of Buddhas and Confucian deities, glittering in gold, blinking lights and all shades of kitsch. Note the statue of Budai the "Laughing Buddha" outside — there is a steady crowd trooping up to rub his big belly, hoping to catch some of his good luck.
+4 Sin Chew Chinese Cultural Products Supermart, 192 Waterloo St. True to the name, this store packs in vast quantities of Buddhas and Confucian deities, glittering in gold, blinking lights and all shades of kitsch. Note the statue of Budai the "Laughing Buddha" outside - there is a steady crowd trooping up to rub his big belly, hoping to catch some of his good luck.
 
 Like Little India and Chinatown, Kampong Glam has been restored, refurbished and new life breathed into it, bringing back the former colour and vibrancy of the area. Rows of conserved shophouses can be found in Arab Street, Baghdad Street and Bussorah Street. Many of these shophouses have new tenants such as design and IT firms, art galleries, crafts and curios shops, food caterers and restaurants. They blend in with traditional businesses like textile and carpet shops, antiques and handicrafts shops including those selling traditional games, blacksmiths, and shops selling religious items used by Muslims. On Haji Lane, local independent fashion boutiques and quirky little shops offer a unique shopping experience. It is a prominent location for second-hand clothing and trendy street fashion, featuring the works of local designers and imported wares from Japan and the States.
 Kampong Glam is also an area dotted with good restaurants, from Malaysian coffee shops and bakeries to fine modern European dining. Many of the stores on Arab Street specialize in batik and silk. Be prepared to bargain.

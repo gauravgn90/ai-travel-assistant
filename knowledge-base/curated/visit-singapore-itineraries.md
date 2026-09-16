@@ -14,7 +14,7 @@ MRT station, because the train network is how these plans are meant to be strung
 
 ## How to read these plans
 
-Singapore is compact — most journeys between the areas below take 15 to 30 minutes by MRT — so the
+Singapore is compact - most journeys between the areas below take 15 to 30 minutes by MRT - so the
 usual mistake is over-scheduling rather than under-scheduling. Three substantial stops a day is a
 comfortable pace in the heat. Each plan below assumes roughly 09:00 to 22:00 with a long, slow
 lunch during the hottest part of the afternoon.
@@ -26,12 +26,12 @@ swapping the order of an afternoon rather than abandoning it is almost always en
 
 For a stopover or a single free day. Covers the skyline, one heritage district, and one hawker meal.
 
-- Morning — Marina Bay. Gardens by the Bay: the Supertree Grove outdoors, the Cloud Forest and
+- Morning - Marina Bay. Gardens by the Bay: the Supertree Grove outdoors, the Cloud Forest and
   Flower Dome conservatories indoors and air-conditioned. Nearest MRT: Bayfront.
-- Midday — lunch at Lau Pa Sat or Maxwell Food Centre. Nearest MRT: Telok Ayer or Maxwell.
-- Afternoon — Chinatown on foot: Buddha Tooth Relic Temple, Sri Mariamman Temple, the shophouse
+- Midday - lunch at Lau Pa Sat or Maxwell Food Centre. Nearest MRT: Telok Ayer or Maxwell.
+- Afternoon - Chinatown on foot: Buddha Tooth Relic Temple, Sri Mariamman Temple, the shophouse
   streets around Pagoda Street and Ann Siang Hill. Nearest MRT: Chinatown.
-- Evening — the Marina Bay waterfront promenade, the Spectra light and water show outside Marina
+- Evening - the Marina Bay waterfront promenade, the Spectra light and water show outside Marina
   Bay Sands, then the ArtScience Museum or the observation deck if the weather turns. Nearest MRT:
   Bayfront.
 
@@ -40,30 +40,30 @@ For a stopover or a single free day. Covers the skyline, one heritage district, 
 The standard first-visit plan: one day of icons, one of neighbourhoods and food, one of nature or
 the islands.
 
-### Day 1 — Marina Bay and the Civic District
+### Day 1 - Marina Bay and the Civic District
 
 - Morning: Gardens by the Bay, starting with the conservatories before the heat peaks, then the
   OCBC Skyway and Supertree Grove.
-- Afternoon: the Civic District on foot — the National Gallery Singapore, the Asian Civilisations
+- Afternoon: the Civic District on foot - the National Gallery Singapore, the Asian Civilisations
   Museum and the colonial-era buildings around the Padang. All indoors and walkable under cover.
 - Evening: Boat Quay and Clarke Quay along the Singapore River, or a river bumboat ride for the
   skyline view.
 
-### Day 2 — Heritage districts and hawker food
+### Day 2 - Heritage districts and hawker food
 
-- Morning: Chinatown — Buddha Tooth Relic Temple, Sri Mariamman Temple, the Chinatown Heritage
+- Morning: Chinatown - Buddha Tooth Relic Temple, Sri Mariamman Temple, the Chinatown Heritage
   Centre for an indoor option.
 - Midday: lunch at Maxwell Food Centre or Hong Lim Market and Food Centre.
-- Afternoon: Little India — Sri Veeramakaliamman Temple, Tekka Centre, the Indian Heritage Centre —
+- Afternoon: Little India - Sri Veeramakaliamman Temple, Tekka Centre, the Indian Heritage Centre -
   then Kampong Glam for Masjid Sultan, Haji Lane and Arab Street.
 - Evening: dinner along Arab Street or in Bugis, then the shops at Bugis Street.
 
-### Day 3 — Nature, islands, or shopping
+### Day 3 - Nature, islands, or shopping
 
 Pick one, according to the weather and who is travelling.
 
 - Nature: Singapore Botanic Gardens and the National Orchid Garden in the morning, then the Mandai
-  Wildlife Reserve — Singapore Zoo, River Wonders, Bird Paradise — or the Night Safari after dark.
+  Wildlife Reserve - Singapore Zoo, River Wonders, Bird Paradise - or the Night Safari after dark.
 - Islands: Sentosa for the beaches, the SkyHelix, the S.E.A. Aquarium and Universal Studios
   Singapore. Reached by the Sentosa Express from HarbourFront.
 - Shopping and indoors: Orchard Road's malls, then Jewel Changi Airport for the HSBC Rain Vortex
@@ -73,9 +73,9 @@ Pick one, according to the weather and who is travelling.
 
 Days 1 to 3 as above, then:
 
-- Day 4 — East Coast: Katong and Joo Chiat for Peranakan shophouses and laksa, East Coast Park for
+- Day 4 - East Coast: Katong and Joo Chiat for Peranakan shophouses and laksa, East Coast Park for
   the beach and cycling, seafood dinner for chilli crab.
-- Day 5 — West and north: Haw Par Villa, the Southern Ridges walk with the Henderson Waves bridge,
+- Day 5 - West and north: Haw Par Villa, the Southern Ridges walk with the Henderson Waves bridge,
   or Pulau Ubin by bumboat from Changi Point for a look at rural Singapore.
 
 ## Itineraries by traveller profile
@@ -85,26 +85,26 @@ Days 1 to 3 as above, then:
 Singapore is unusually easy with children: everything is step-free, air-conditioned and short
 distances apart.
 
-- Sentosa — Universal Studios Singapore, the S.E.A. Aquarium, Adventure Cove Waterpark, Palawan
+- Sentosa - Universal Studios Singapore, the S.E.A. Aquarium, Adventure Cove Waterpark, Palawan
   Beach and its shallow lagoon.
-- Mandai Wildlife Reserve — the Singapore Zoo's free-range enclosures, River Wonders, Bird
+- Mandai Wildlife Reserve - the Singapore Zoo's free-range enclosures, River Wonders, Bird
   Paradise, and the Night Safari for an evening that works whatever the day's weather did.
 - Science Centre Singapore in Jurong, and the KidsSTOP gallery for under-eights. Entirely indoors.
 - Gardens by the Bay's Far East Organization Children's Garden, which is free and has water play.
-- Jewel Changi Airport — the Canopy Park, mirror maze and bouncing nets, all under cover.
+- Jewel Changi Airport - the Canopy Park, mirror maze and bouncing nets, all under cover.
 
 Practical notes: children under seven travel free on public transport, all malls and attractions
 have nursing rooms, and strollers are easy to use everywhere thanks to lifts at every MRT station.
 
 ### Culture and heritage
 
-- Chinatown — Buddha Tooth Relic Temple, Sri Mariamman Temple, Thian Hock Keng Temple, the
+- Chinatown - Buddha Tooth Relic Temple, Sri Mariamman Temple, Thian Hock Keng Temple, the
   Chinatown Heritage Centre.
-- Little India — Sri Veeramakaliamman Temple, the Indian Heritage Centre, Tekka Centre.
-- Kampong Glam — Masjid Sultan, the Malay Heritage Centre, Arab Street's textile shops.
-- Civic District — National Gallery Singapore, Asian Civilisations Museum, National Museum of
+- Little India - Sri Veeramakaliamman Temple, the Indian Heritage Centre, Tekka Centre.
+- Kampong Glam - Masjid Sultan, the Malay Heritage Centre, Arab Street's textile shops.
+- Civic District - National Gallery Singapore, Asian Civilisations Museum, National Museum of
   Singapore, Peranakan Museum.
-- Katong and Joo Chiat — Peranakan shophouse architecture and Eurasian food.
+- Katong and Joo Chiat - Peranakan shophouse architecture and Eurasian food.
 
 Most museums are indoors and air-conditioned, which makes this the natural plan for a wet day.
 
