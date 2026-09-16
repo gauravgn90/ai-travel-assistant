@@ -7,12 +7,13 @@ question that needs both gets both, and the answer says which part came from whe
 Built with Next.js, LangChain, a local sentence-transformer embedding model and a FAISS index.
 The chat model is pluggable: Google Gemini, OpenAI, Anthropic or Groq.
 
-## Setup
+## Setup Without Docker (Node must be installed in system)
 
 Requires Node 24 or newer (it runs the TypeScript tool servers and the ingest script directly).
 
 ```bash
 git clone https://github.com/gauravgn90/ai-travel-assistant.git
+nvm use
 npm install
 cp .env.example .env.local     # pick a provider and set its key
 npm run fetch                  # refresh the knowledge base from the wikis (optional)
