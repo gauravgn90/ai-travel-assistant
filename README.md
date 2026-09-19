@@ -335,5 +335,11 @@ Both:
 
 Multi-turn - the second question relies on the first:
 
-- "I'm travelling with two young children and have four days." -> "Now plan the four days around the
-  forecast."
+- I'm travelling with two young children and have four days.
+- Now plan the four days around the forecast.
+
+
+## Note:
+When you see error like Agent is down, then try to switch to another agent. For assignment demo purpose I have used google gemini and groq only, so please try to use only either of two.
+
+Since we are using free tier for both LLM models, I have observed few things related to service disruptions. Sometimes you will see error 429 due to rate limit that is obvious in free tier. Apart from that LLM also throw exception 503 (service unavailable) due to excessive use, so try to use after sometime.
